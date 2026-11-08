@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Missing Trophy · A2 Escape Room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a2233;--blue:#1E3A8A;--grey:#6B7280;--hi:#FFD84D;--line:#d9dee8;--soft:#f3f5fa;--ok:#137a3f;--bad:#b42318;color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-padding-top:90px}
+body{margin:0;font:17px/1.55 "Open Sans",system-ui,sans-serif;color:var(--ink);background:#fff}
+h1,h2,h3{font-family:Montserrat,system-ui,sans-serif;line-height:1.15;margin:0}
+.bar{position:sticky;top:0;z-index:5;background:var(--blue);color:#fff;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;padding:10px max(16px,calc(50% - 350px))}
+.timer{font:800 26px Montserrat,sans-serif;min-width:84px}
+.timer.low{color:var(--hi)}
+.slots{display:flex;gap:8px}
+.slot{width:38px;height:46px;border:2px solid #8da2d8;border-radius:6px;display:grid;place-items:center;font:800 24px Montserrat,sans-serif}
+.slot.on{background:var(--hi);border-color:var(--hi);color:var(--ink)}
+button{font:600 15px "Open Sans",sans-serif;cursor:pointer;border:0;border-radius:6px;padding:10px 16px;background:var(--blue);color:#fff}
+button.alt{background:#fff;color:var(--blue);border:2px solid #fff}
+button:disabled{opacity:.45;cursor:not-allowed}
+:focus-visible{outline:3px solid var(--hi);outline-offset:2px}
+main{max-width:700px;margin:0 auto;padding:0 16px 80px}
+.hero{padding:40px 0 24px}
+.hero h1{font-size:clamp(34px,8vw,52px);font-weight:800;color:var(--blue)}
+.hero p.sub{color:var(--grey);margin:8px 0 0}
+.story{background:var(--soft);border-left:6px solid var(--hi);padding:16px 20px;margin:20px 0}
+.story p{margin:0 0 8px}
+table{border-collapse:collapse;width:100%;font-size:15px;margin:8px 0 16px}
+td,th{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--soft)}
+.rule{font-size:15px;color:var(--grey)}
+section.clue{border-top:3px solid var(--blue);padding:26px 0 30px;margin-top:10px}
+section.clue.locked{opacity:.4}
+section.clue h2{font-size:24px;color:var(--blue)}
+section.clue .tag{color:var(--grey);font-size:15px;margin:2px 0 14px}
+blockquote{margin:0 0 14px;padding:12px 16px;background:var(--soft);border-radius:6px}
+ol.qs{padding-left:22px}ol.qs li{margin:8px 0}
+input,select{font:inherit;padding:6px 8px;border:2px solid var(--line);border-radius:6px;background:#fff;color:var(--ink);max-width:100%}
+input.g{width:120px}input.w{width:min(100%,360px)}input.n{width:64px;text-align:center;font-weight:600}
+.bad{border-color:var(--bad)!important;background:#fdf1f0}
+.ok{border-color:var(--ok)!important}
+.row{margin:12px 0}
+.cam{margin:6px 0}
+.num{margin:18px 0 6px;font-weight:600}
+.msg{min-height:24px;margin:10px 0 0;font-weight:600}
+.msg.good{color:var(--ok)}.msg.err{color:var(--bad)}
+.dia p{margin:10px 0}
+.hint{display:none;background:#fff8d6;border:2px solid var(--hi);padding:10px 14px;border-radius:6px;margin:14px 0}
+.hint.show{display:block}
+.final{border-top:3px solid var(--blue);padding-top:26px}
+.final input.code{width:150px;font:800 28px Montserrat,sans-serif;text-align:center;letter-spacing:6px}
+#win{display:none}
+#win.show{display:block}
+#win h2{font-size:32px;color:var(--ok)}
+#win ul{padding-left:22px}
+.gold{background:var(--hi);padding:12px 16px;border-radius:6px;margin:16px 0;font-weight:600}
+@media print{.bar,button{display:none}section.clue.locked{opacity:1}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="bar" role="region" aria-label="Mission control">
+  <div class="timer" id="timer" aria-live="off">25:00</div>
+  <div class="slots" id="slots" aria-label="Collected numbers"><div class="slot">?</div><div class="slot">?</div><div class="slot">?</div><div class="slot">?</div></div>
+  <button class="alt" id="helpBtn" disabled>Help card (2 left)</button>
+</div>
+
+<main>
+  <header class="hero">
+    <h1>The Missing Trophy</h1>
+    <p class="sub">English escape room · Level A2 · Present simple and present continuous</p>
+    <div class="story">
+      <p><strong>Good morning, detectives!</strong></p>
+      <p>Something terrible is happening at Oakwood School. The school trophy is missing!</p>
+      <p>The thief is still in the building. You have 25 minutes to find the thief and open the box.</p>
+      <p>Solve 4 clues. Every clue gives you ONE number. Put the numbers in order to open the box.</p>
+      <p>Work together. Speak English. Good luck!</p>
+    </div>
+    <h3>Team roles</h3>
+    <table>
+      <tr><th>Role</th><th>Job</th></tr>
+      <tr><td>Reader</td><td>Reads the clues aloud</td></tr>
+      <tr><td>Writer</td><td>Types the answers</td></tr>
+      <tr><td>Speaker</td><td>Talks to the teacher and says the final code</td></tr>
+      <tr><td>Checker</td><td>Watches the time and checks the answers</td></tr>
+    </table>
+    <p class="rule">Everyone speaks English. Change roles after each clue! You have 2 help cards: press the button at the top, then your teacher or the screen gives you one hint.</p>
+    <button id="start">Start the mission</button>
+  </header>
+
+  <!-- CLUE 1 -->
+  <section class="clue locked" id="c0" inert data-d="8">
+    <h2>Clue 1: The caretaker’s day</h2>
+    <p class="tag">Present simple</p>
+    <blockquote>Mr Parker is the school caretaker. He arrives at school at 7:00. He opens the gym at 7:30. He cleans the classrooms at 8:00. At 9:00 he drinks coffee in the canteen. He doesn’t work on Saturdays.</blockquote>
+    <ol class="qs">
+      <li>What time does he open the gym? <input class="g" aria-label="Question 1" data-a="730|7 30"></li>
+      <li>What time does he clean the classrooms? <input class="g" aria-label="Question 2" data-a="800|8|8 oclock|8am|8 am"></li>
+      <li>Where does he drink coffee? <input class="w" aria-label="Question 3" data-c="canteen"></li>
+      <li>Does he work on Saturdays? <input class="g" aria-label="Question 4" data-a="no|no he doesnt|no he does not|no doesnt"></li>
+    </ol>
+    <p class="num">Your first number is the HOUR in question 2. Number 1 = <input class="n" inputmode="numeric" aria-label="Number 1" data-a="8"></p>
+    <button class="chk" data-i="0">Check answers</button>
+    <p class="msg" aria-live="polite"></p>
+  </section>
+
+  <!-- CLUE 2 -->
+  <section class="clue locked" id="c1" inert data-d="5">
+    <h2>Clue 2: The security cameras</h2>
+    <p class="tag">Present continuous</p>
+    <p>The cameras show the school at <strong>10:15 am</strong>. Where is everybody? Choose the room number.</p>
+    <table>
+      <tr><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+      <tr><td>Library</td><td>Gym</td><td>Canteen</td><td>Music room</td><td>Science lab</td></tr>
+    </table>
+    <div class="cam"><strong>A.</strong> Some students are eating sandwiches and drinking juice. Room <select aria-label="Report A" data-a="3"><option value="">–</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+    <div class="cam"><strong>B.</strong> A girl is reading a book and two boys are doing their homework. Room <select aria-label="Report B" data-a="1"><option value="">–</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+    <div class="cam"><strong>C.</strong> The teacher is playing the guitar and the students are singing. Room <select aria-label="Report C" data-a="4"><option value="">–</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+    <div class="cam"><strong>D.</strong> Four students are playing basketball. Room <select aria-label="Report D" data-a="2"><option value="">–</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+    <p class="num">The thief is NOT eating, reading, singing or playing sports. Where is the thief? Number 2 = Room <select aria-label="Number 2" data-a="5"><option value="">–</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></p>
+    <button class="chk" data-i="1">Check answers</button>
+    <p class="msg" aria-live="polite"></p>
+  </section>
+
+  <!-- CLUE 3 -->
+  <section class="clue locked" id="c2" inert data-d="3">
+    <h2>Clue 3: Find the mistakes</h2>
+    <p class="tag">Present simple and present continuous</p>
+    <p>The thief writes messages in a notebook, but some sentences have mistakes! Choose Correct or Wrong. Then write the correct version of every sentence in the box (if a sentence is already correct, copy it or leave the box empty).</p>
+    <div class="row">1. She is going to school every day.<br>
+      <select aria-label="Sentence 1" data-a="wrong"><option value="">Choose</option><option value="ok">Correct</option><option value="wrong">Wrong</option></select>
+      <input class="w" aria-label="Correction 1" placeholder="Write the correct sentence" data-a="she goes to school every day"></div>
+    <div class="row">2. Look! It’s raining.<br>
+      <select aria-label="Sentence 2" data-a="ok"><option value="">Choose</option><option value="ok">Correct</option><option value="wrong">Wrong</option></select>
+      <input class="w" aria-label="Correction 2" placeholder="Write the correct sentence" data-opt="1" data-a="look its raining|look it is raining"></div>
+    <div class="row">3. Every Saturday we are visiting our grandparents.<br>
+      <select aria-label="Sentence 3" data-a="wrong"><option value="">Choose</option><option value="ok">Correct</option><option value="wrong">Wrong</option></select>
+      <input class="w" aria-label="Correction 3" placeholder="Write the correct sentence" data-a="every saturday we visit our grandparents|we visit our grandparents every saturday"></div>
+    <div class="row">4. They play football on Fridays.<br>
+      <select aria-label="Sentence 4" data-a="ok"><option value="">Choose</option><option value="ok">Correct</option><option value="wrong">Wrong</option></select>
+      <input class="w" aria-label="Correction 4" placeholder="Write the correct sentence" data-opt="1" data-a="they play football on fridays|on fridays they play football"></div>
+    <div class="row">5. We are having English class now.<br>
+      <select aria-label="Sentence 5" data-a="ok"><option value="">Choose</option><option value="ok">Correct</option><option value="wrong">Wrong</option></select>
+      <input class="w" aria-label="Correction 5" placeholder="Write the correct sentence" data-opt="1" data-a="we are having english class now|were having english class now|now we are having english class|now were having english class"></div>
+    <div class="row">6. He watches TV at the moment.<br>
+      <select aria-label="Sentence 6" data-a="wrong"><option value="">Choose</option><option value="ok">Correct</option><option value="wrong">Wrong</option></select>
+      <input class="w" aria-label="Correction 6" placeholder="Write the correct sentence" data-a="he is watching tv at the moment|hes watching tv at the moment|at the moment he is watching tv|at the moment hes watching tv"></div>
+    <p class="num">Your third number is how many sentences are CORRECT. Number 3 = <input class="n" inputmode="numeric" aria-label="Number 3" data-a="3"></p>
+    <button class="chk" data-i="2">Check answers</button>
+    <p class="msg" aria-live="polite"></p>
+  </section>
+
+  <!-- CLUE 4 -->
+  <section class="clue locked" id="c3" inert data-d="4">
+    <h2>Clue 4: The suspect’s interview</h2>
+    <p class="tag">Present simple and present continuous</p>
+    <p>You find the suspect in the science lab. Complete the dialogue with the correct form of the verb.</p>
+    <div class="dia">
+      <p><strong>Detective:</strong> What <input class="g" aria-label="Gap 1 first word" data-a="are" style="width:70px"> you <input class="g" aria-label="Gap 1 second word" data-a="doing" style="width:100px"> (do) in the science lab now?</p>
+      <p><strong>Suspect:</strong> I <input class="g" aria-label="Gap 2" data-a="am looking for" style="width:150px"> (look for) my glasses.</p>
+      <p><strong>Detective:</strong> <input class="g" aria-label="Gap 3 first word" data-a="do" style="width:70px"> you <input class="g" aria-label="Gap 3 second word" data-a="work" style="width:100px"> (work) here every day?</p>
+      <p><strong>Suspect:</strong> No, I <input class="g" aria-label="Gap 4" data-a="dont come|do not come" style="width:150px"> (not / come) on Fridays.</p>
+      <p><strong>Detective:</strong> Why <input class="g" aria-label="Gap 5 first word" data-a="are" style="width:70px"> you <input class="g" aria-label="Gap 5 second word" data-a="wearing" style="width:110px"> (wear) a white coat now?</p>
+      <p><strong>Suspect:</strong> Because I have a chemistry class at 11:00.</p>
+      <p><strong>Detective:</strong> Wait! Look! The trophy <input class="g" aria-label="Gap 6" data-a="is shining" style="width:150px"> (shine) in your bag!</p>
+    </div>
+    <p class="num">Your last number is how many gaps need the PRESENT CONTINUOUS (count the gaps, not the words). Number 4 = <input class="n" inputmode="numeric" aria-label="Number 4" data-a="4"></p>
+    <button class="chk" data-i="3">Check answers</button>
+    <p class="msg" aria-live="polite"></p>
+  </section>
+
+  <div class="hint" id="hint" role="status"></div>
+
+  <!-- FINAL -->
+  <section class="final" id="final" hidden>
+    <h2>The box</h2>
+    <p>Put your four numbers in order to open the box.</p>
+    <p><input class="code" id="code" inputmode="numeric" maxlength="4" aria-label="Four-digit code"> <button id="open">Open the box</button></p>
+    <p class="msg" id="fmsg" aria-live="polite"></p>
+  </section>
+
+  <section id="win">
+    <h2>You found the trophy!</h2>
+    <p>Speaker: say the code to your teacher and finish this sentence.</p>
+    <p class="gold">The thief is in the <input class="g" id="sRoom" aria-label="Room" style="width:150px"> and he/she is <input class="w" id="sAct" aria-label="Action" style="width:240px"> now.</p>
+    <p><button id="sBtn">Check my sentence</button></p>
+    <p class="msg" id="smsg" aria-live="polite"></p>
+    <h3>Debrief (5 minutes)</h3>
+    <ul>
+      <li>Which clue was the most difficult?</li>
+      <li>Say one sentence in present simple. For example: “He cleans the classrooms at 8:00.”</li>
+      <li>Say one sentence in present continuous. For example: “The students are singing.”</li>
+      <li>What does “now” help you decide?</li>
+    </ul>
+    <p class="gold">Every day, usually, on Fridays → present simple.<br>Now, at the moment, look! → present continuous.</p>
+  </section>
+</main>
+
+<script>
+const $=s=>document.querySelector(s);
+const N=s=>s.toLowerCase().replace(/[’']/g,'').replace(/[.,!?¡¿:;]/g,'').replace(/\s+/g,' ').trim();
+const hints=[
+  'Look for the time in the text. Which activity is at 8:00?',
+  'Read the four reports. Which room is NOT in the list?',
+  'Look for time words: every day, on Fridays = present simple. now, look!, at the moment = present continuous.',
+  'Present continuous = am / is / are + verb-ing. Look for “now” and “Look!”'
+];
+const digits=['?','?','?','?'];
+let cur=-1, left=25*60, helps=2, tm=null;
+
+function drawSlots(){
+  document.querySelectorAll('.slot').forEach((s,i)=>{s.textContent=digits[i];s.classList.toggle('on',digits[i]!=='?')});
+}
+function tick(){
+  left=Math.max(0,left-1);
+  const t=$('#timer');
+  t.textContent=String(Math.floor(left/60)).padStart(2,'0')+':'+String(left%60).padStart(2,'0');
+  t.classList.toggle('low',left<=300);
+  if(left===0){clearInterval(tm);$('#fmsg').textContent='';alert('Time’s up! Ask your teacher if you can keep going.');}
+}
+function unlock(i){
+  const s=$('#c'+i);
+  s.classList.remove('locked');s.removeAttribute('inert');cur=i;
+  $('#hint').classList.remove('show');
+  s.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function good(el){
+  if(!el.value.trim())return !!el.dataset.opt;
+  const v=N(el.value);
+  if(el.dataset.c)return v.includes(el.dataset.c);
+  return el.dataset.a.split('|').includes(v);
+}
+function check(i){
+  const sec=$('#c'+i);let all=true;
+  sec.querySelectorAll('[data-a],[data-c]').forEach(q=>{
+    const g=good(q);
+    q.classList.toggle('bad',!g);q.classList.toggle('ok',g);
+    if(!g)all=false;
+  });
+  const m=sec.querySelector('.msg');
+  if(all){
+    m.className='msg good';
+    m.textContent='Correct! Number '+(i+1)+' is '+sec.dataset.d+'.';
+    sec.querySelectorAll('input,select,button').forEach(x=>x.disabled=true);
+    digits[i]=sec.dataset.d;drawSlots();
+    if(i<3)unlock(i+1);
+    else{$('#final').hidden=false;$('#hint').classList.remove('show');cur=4;$('#helpBtn').disabled=true;$('#final').scrollIntoView({behavior:'smooth'});}
+  }else{
+    m.className='msg err';
+    m.textContent='Not yet. Check the red boxes and try again.';
+  }
+}
+$('#start').onclick=e=>{
+  e.target.disabled=true;
+  unlock(0);
+  $('#helpBtn').disabled=false;
+  tm=setInterval(tick,1000);
+};
+document.querySelectorAll('.chk').forEach(b=>b.onclick=()=>check(+b.dataset.i));
+$('#helpBtn').onclick=()=>{
+  if(helps<1||cur<0||cur>3)return;
+  helps--;
+  $('#helpBtn').textContent='Help card ('+helps+' left)';
+  if(helps===0)$('#helpBtn').disabled=true;
+  const h=$('#hint');
+  h.textContent='Hint for Clue '+(cur+1)+': '+hints[cur];
+  h.classList.add('show');
+  $('#c'+cur).appendChild(h);
+};
+$('#sBtn').onclick=()=>{
+  const S=s=>N(s.replace(/\//g,' '));
+  const r=S($('#sRoom').value), a=S($('#sAct').value), m=$('#smsg');
+  const roomOk=/^(in )?(the )?(science )?(lab|laboratory)$/.test(r) && /lab/.test(r);
+  const actOk=/^(is )?(looking for (his|her|his her|their|the|my) glasses|wearing a white (lab )?coat)$/.test(a);
+  $('#sRoom').classList.toggle('bad',!!r&&!roomOk);
+  $('#sAct').classList.toggle('bad',!!a&&!actOk);
+  m.className='msg err';
+  if(!r||!a){m.textContent='Complete both gaps first.';return;}
+  if(!roomOk){m.textContent='Check the room again. Look at Clue 2: where is the thief?';return;}
+  if(!actOk){
+    m.textContent=/ing\b/.test(a)
+      ?'Almost. Look at the interview in Clue 4: what is the suspect doing now?'
+      :'Use the present continuous: is + verb-ing.';
+    return;
+  }
+  m.className='msg good';
+  m.textContent='Perfect sentence! Mission complete, detectives.';
+  ['#sRoom','#sAct','#sBtn'].forEach(x=>{$(x).disabled=true;});
+  $('#sRoom').classList.add('ok');$('#sAct').classList.add('ok');
+};
+$('#open').onclick=()=>{
+  const v=$('#code').value.replace(/\D/g,'');
+  const m=$('#fmsg');
+  if(v==='8534'){
+    m.className='msg good';m.textContent='Click! The box is open.';
+    clearInterval(tm);
+    $('#open').disabled=true;$('#code').disabled=true;
+    $('#win').classList.add('show');
+    $('#win').scrollIntoView({behavior:'smooth'});
+  }else{
+    m.className='msg err';
+    m.textContent='This code doesn’t open the box. Check your numbers and their order.';
+  }
+};
+</script>
+</body>
+</html>
