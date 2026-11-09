@@ -22,6 +22,7 @@
   ul { list-style:none; padding:0; margin:0; }
   li a { display:block; background:var(--gris); margin:6px 0; padding:11px 15px; border-radius:8px; color:var(--texto); text-decoration:none; font-weight:600; }
   li a:hover { background:var(--azul); color:#fff; }
+  li.aviso { color:#6b7280; font-style:italic; padding:6px 2px; }
   footer { background:var(--gris); text-align:center; padding:16px; font-size:.9rem; }
 </style>
 </head>
@@ -34,19 +35,20 @@
 <main>
   <p class="intro">Elige tu nivel y practica gramática y vocabulario.</p>
 
-  <!-- ============ PLANTILLA DE NIVEL: copia un bloque <details> entero para añadir otro ============ -->
+  <!--
+    CÓMO FUNCIONA: cada lista <ul data-carpeta="..."> se rellena sola con los
+    archivos .html que haya en esa carpeta del repositorio.
+    Para añadir un nivel nuevo, copia un bloque <details> entero y cambia
+    el nombre del nivel y el valor de data-carpeta en cada lista.
+  -->
 
   <details>
     <summary>Starters <small>Pre A1</small></summary>
     <div class="contenido">
       <h3>Gramática</h3>
-      <ul>
-        <li><a href="starters/gramatica/ejemplo.html">Título del archivo de gramática</a></li>
-      </ul>
+      <ul data-carpeta="starters/gramatica"></ul>
       <h3>Vocabulario</h3>
-      <ul>
-        <li><a href="starters/vocabulario/ejemplo.html">Título del archivo de vocabulario</a></li>
-      </ul>
+      <ul data-carpeta="starters/vocabulario"></ul>
     </div>
   </details>
 
@@ -54,9 +56,9 @@
     <summary>Movers <small>A1</small></summary>
     <div class="contenido">
       <h3>Gramática</h3>
-      <ul><li><a href="movers/gramatica/ejemplo.html">Título del archivo de gramática</a></li></ul>
+      <ul data-carpeta="movers/gramatica"></ul>
       <h3>Vocabulario</h3>
-      <ul><li><a href="movers/vocabulario/ejemplo.html">Título del archivo de vocabulario</a></li></ul>
+      <ul data-carpeta="movers/vocabulario"></ul>
     </div>
   </details>
 
@@ -64,9 +66,9 @@
     <summary>Flyers <small>A2</small></summary>
     <div class="contenido">
       <h3>Gramática</h3>
-      <ul><li><a href="flyers/gramatica/ejemplo.html">Título del archivo de gramática</a></li></ul>
+      <ul data-carpeta="flyers/gramatica"></ul>
       <h3>Vocabulario</h3>
-      <ul><li><a href="flyers/vocabulario/ejemplo.html">Título del archivo de vocabulario</a></li></ul>
+      <ul data-carpeta="flyers/vocabulario"></ul>
     </div>
   </details>
 
@@ -74,9 +76,9 @@
     <summary>Key <small>A2</small></summary>
     <div class="contenido">
       <h3>Gramática</h3>
-      <ul><li><a href="key/gramatica/ejemplo.html">Título del archivo de gramática</a></li></ul>
+      <ul data-carpeta="key/gramatica"></ul>
       <h3>Vocabulario</h3>
-      <ul><li><a href="key/vocabulario/ejemplo.html">Título del archivo de vocabulario</a></li></ul>
+      <ul data-carpeta="key/vocabulario"></ul>
     </div>
   </details>
 
@@ -84,9 +86,9 @@
     <summary>Preliminary (PET) <small>B1</small></summary>
     <div class="contenido">
       <h3>Gramática</h3>
-      <ul><li><a href="pet/gramatica/ejemplo.html">Título del archivo de gramática</a></li></ul>
+      <ul data-carpeta="pet/gramatica"></ul>
       <h3>Vocabulario</h3>
-      <ul><li><a href="pet/vocabulario/ejemplo.html">Título del archivo de vocabulario</a></li></ul>
+      <ul data-carpeta="pet/vocabulario"></ul>
     </div>
   </details>
 
@@ -94,9 +96,9 @@
     <summary>First <small>B2</small></summary>
     <div class="contenido">
       <h3>Gramática</h3>
-      <ul><li><a href="first/gramatica/ejemplo.html">Título del archivo de gramática</a></li></ul>
+      <ul data-carpeta="first/gramatica"></ul>
       <h3>Vocabulario</h3>
-      <ul><li><a href="first/vocabulario/ejemplo.html">Título del archivo de vocabulario</a></li></ul>
+      <ul data-carpeta="first/vocabulario"></ul>
     </div>
   </details>
 
@@ -104,13 +106,137 @@
     <summary>Advanced <small>C1</small></summary>
     <div class="contenido">
       <h3>Gramática</h3>
-      <ul><li><a href="advanced/gramatica/ejemplo.html">Título del archivo de gramática</a></li></ul>
+      <ul data-carpeta="advanced/gramatica"></ul>
       <h3>Vocabulario</h3>
-      <ul><li><a href="advanced/vocabulario/ejemplo.html">Título del archivo de vocabulario</a></li></ul>
+      <ul data-carpeta="advanced/vocabulario"></ul>
     </div>
   </details>
 </main>
 
 <footer>© Castle School · Aguadulce</footer>
+
+<script>
+(function () {
+  // Si tu página usa dominio propio (no termina en .github.io), rellena esto:
+  // var MANUAL = { owner: 'tu-usuario', repo: 'tu-repositorio' };
+  var MANUAL = null;
+
+  var DURACION_CACHE = 10 * 60 * 1000; // 10 minutos
+
+  function detectarRepo() {
+    if (MANUAL) return MANUAL;
+    var host = location.hostname;
+    if (!/\.github\.io$/.test(host)) return null;
+    var owner = host.split('.')[0];
+    var primera = location.pathname.split('/').filter(Boolean)[0];
+    var repo = (primera && primera.indexOf('.') === -1) ? primera : owner + '.github.io';
+    return { owner: owner, repo: repo };
+  }
+
+  function leerCache(clave) {
+    try {
+      var d = JSON.parse(localStorage.getItem(clave));
+      return d && d.archivos ? d : null;
+    } catch (e) { return null; }
+  }
+
+  function guardarCache(clave, archivos) {
+    try {
+      localStorage.setItem(clave, JSON.stringify({ t: Date.now(), archivos: archivos }));
+    } catch (e) {}
+  }
+
+  async function pedirArchivos(r) {
+    var ramas = ['HEAD', 'main', 'master'];
+    for (var i = 0; i < ramas.length; i++) {
+      var url = 'https://api.github.com/repos/' + r.owner + '/' + r.repo +
+                '/git/trees/' + ramas[i] + '?recursive=1';
+      var res = await fetch(url);
+      if (res.ok) {
+        var datos = await res.json();
+        return datos.tree
+          .filter(function (n) { return n.type === 'blob'; })
+          .map(function (n) { return n.path; });
+      }
+      if (res.status === 403) throw new Error('limite');
+    }
+    throw new Error('no-encontrado');
+  }
+
+  function titulo(ruta) {
+    var nombre = ruta.split('/').pop().replace(/\.html?$/i, '');
+    nombre = nombre.replace(/[-_]+/g, ' ').trim();
+    return nombre.charAt(0).toUpperCase() + nombre.slice(1);
+  }
+
+  function aviso(ul, texto) {
+    ul.innerHTML = '';
+    var li = document.createElement('li');
+    li.className = 'aviso';
+    li.textContent = texto;
+    ul.appendChild(li);
+  }
+
+  function pintar(archivos) {
+    var listas = document.querySelectorAll('ul[data-carpeta]');
+    Array.prototype.forEach.call(listas, function (ul) {
+      var prefijo = ul.getAttribute('data-carpeta').toLowerCase() + '/';
+      var encontrados = archivos.filter(function (p) {
+        return p.toLowerCase().indexOf(prefijo) === 0 &&
+               /\.html?$/i.test(p) &&
+               !/(^|\/)(ejemplo|index)\.html?$/i.test(p);
+      }).sort(function (a, b) {
+        return a.localeCompare(b, 'es', { numeric: true, sensitivity: 'base' });
+      });
+
+      if (!encontrados.length) { aviso(ul, 'Próximamente…'); return; }
+
+      ul.innerHTML = '';
+      encontrados.forEach(function (p) {
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = p.split('/').map(encodeURIComponent).join('/');
+        a.textContent = titulo(p);
+        li.appendChild(a);
+        ul.appendChild(li);
+      });
+    });
+  }
+
+  function avisoGeneral(texto) {
+    Array.prototype.forEach.call(document.querySelectorAll('ul[data-carpeta]'), function (ul) {
+      aviso(ul, texto);
+    });
+  }
+
+  async function iniciar() {
+    var repo = detectarRepo();
+    if (!repo) {
+      avisoGeneral('No se pudo detectar el repositorio. Revisa la configuración al final de index.html.');
+      return;
+    }
+    avisoGeneral('Cargando…');
+
+    var clave = 'castle_lista_' + repo.owner + '/' + repo.repo;
+    var cache = leerCache(clave);
+
+    if (cache && (Date.now() - cache.t) < DURACION_CACHE) {
+      pintar(cache.archivos);
+      return;
+    }
+
+    try {
+      var archivos = await pedirArchivos(repo);
+      guardarCache(clave, archivos);
+      pintar(archivos);
+    } catch (e) {
+      if (cache) { pintar(cache.archivos); }
+      else { avisoGeneral('No se pudo cargar la lista. Inténtalo de nuevo en unos minutos.'); }
+    }
+  }
+
+  iniciar();
+})();
+</script>
 </body>
 </html>
