@@ -37,7 +37,8 @@
 
   <!--
     CÓMO FUNCIONA: cada lista <ul data-carpeta="..."> se rellena sola con los
-    archivos .html que haya en esa carpeta del repositorio.
+    archivos .html que haya en esa carpeta del repositorio. Puedes poner varias
+    carpetas separadas por | (por ejemplo gramatica|grammar).
     Para añadir un nivel nuevo, copia un bloque <details> entero y cambia
     el nombre del nivel y el valor de data-carpeta en cada lista.
   -->
@@ -46,9 +47,9 @@
     <summary>Starters <small>Pre A1</small></summary>
     <div class="contenido">
       <h3>Gramática</h3>
-      <ul data-carpeta="starters/gramatica"></ul>
+      <ul data-carpeta="starters/gramatica|starters/grammar"></ul>
       <h3>Vocabulario</h3>
-      <ul data-carpeta="starters/vocabulario"></ul>
+      <ul data-carpeta="starters/vocabulario|starters/vocabulary"></ul>
     </div>
   </details>
 
@@ -56,9 +57,9 @@
     <summary>Movers <small>A1</small></summary>
     <div class="contenido">
       <h3>Gramática</h3>
-      <ul data-carpeta="movers/gramatica"></ul>
+      <ul data-carpeta="movers/gramatica|movers/grammar"></ul>
       <h3>Vocabulario</h3>
-      <ul data-carpeta="movers/vocabulario"></ul>
+      <ul data-carpeta="movers/vocabulario|movers/vocabulary"></ul>
     </div>
   </details>
 
@@ -66,9 +67,9 @@
     <summary>Flyers <small>A2</small></summary>
     <div class="contenido">
       <h3>Gramática</h3>
-      <ul data-carpeta="flyers/gramatica"></ul>
+      <ul data-carpeta="flyers/gramatica|flyers/grammar"></ul>
       <h3>Vocabulario</h3>
-      <ul data-carpeta="flyers/vocabulario"></ul>
+      <ul data-carpeta="flyers/vocabulario|flyers/vocabulary"></ul>
     </div>
   </details>
 
@@ -76,9 +77,9 @@
     <summary>Key <small>A2</small></summary>
     <div class="contenido">
       <h3>Gramática</h3>
-      <ul data-carpeta="key/gramatica"></ul>
+      <ul data-carpeta="key/gramatica|key/grammar"></ul>
       <h3>Vocabulario</h3>
-      <ul data-carpeta="key/vocabulario"></ul>
+      <ul data-carpeta="key/vocabulario|key/vocabulary"></ul>
     </div>
   </details>
 
@@ -86,9 +87,9 @@
     <summary>Preliminary (PET) <small>B1</small></summary>
     <div class="contenido">
       <h3>Gramática</h3>
-      <ul data-carpeta="pet/gramatica"></ul>
+      <ul data-carpeta="pet/gramatica|pet/grammar"></ul>
       <h3>Vocabulario</h3>
-      <ul data-carpeta="pet/vocabulario"></ul>
+      <ul data-carpeta="pet/vocabulario|pet/vocabulary"></ul>
     </div>
   </details>
 
@@ -96,9 +97,9 @@
     <summary>First <small>B2</small></summary>
     <div class="contenido">
       <h3>Gramática</h3>
-      <ul data-carpeta="first/gramatica"></ul>
+      <ul data-carpeta="first/gramatica|first/grammar"></ul>
       <h3>Vocabulario</h3>
-      <ul data-carpeta="first/vocabulario"></ul>
+      <ul data-carpeta="first/vocabulario|first/vocabulary"></ul>
     </div>
   </details>
 
@@ -106,9 +107,9 @@
     <summary>Advanced <small>C1</small></summary>
     <div class="contenido">
       <h3>Gramática</h3>
-      <ul data-carpeta="advanced/gramatica"></ul>
+      <ul data-carpeta="advanced/gramatica|advanced/grammar"></ul>
       <h3>Vocabulario</h3>
-      <ul data-carpeta="advanced/vocabulario"></ul>
+      <ul data-carpeta="advanced/vocabulario|advanced/vocabulary"></ul>
     </div>
   </details>
 </main>
@@ -180,9 +181,10 @@
   function pintar(archivos) {
     var listas = document.querySelectorAll('ul[data-carpeta]');
     Array.prototype.forEach.call(listas, function (ul) {
-      var prefijo = ul.getAttribute('data-carpeta').toLowerCase() + '/';
+      var prefijos = ul.getAttribute('data-carpeta').toLowerCase().split('|').map(function (c) { return c.trim() + '/'; });
       var encontrados = archivos.filter(function (p) {
-        return p.toLowerCase().indexOf(prefijo) === 0 &&
+        var minus = p.toLowerCase();
+        return prefijos.some(function (pre) { return minus.indexOf(pre) === 0; }) &&
                /\.html?$/i.test(p) &&
                !/(^|\/)(ejemplo|index)\.html?$/i.test(p);
       }).sort(function (a, b) {
