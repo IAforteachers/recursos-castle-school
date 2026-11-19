@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>B1 Vocabulary | Travelling and Holidays</title>
+<style>
+:root{--blue:#173b6c;--mid:#315e9c;--red:#b63047;--bg:#f3f6fb;--ink:#1f2d3d;--muted:#52637b;--ok:#166348;--lightok:#e7f6ed;--bad:#9c2638;--lightbad:#fff0f1}*{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--ink);background:var(--bg)}.hero{background:linear-gradient(120deg,#142d54,#285893);color:white;padding:36px 18px 42px}.wrap{max-width:940px;margin:auto;padding:0 18px}.eyebrow{letter-spacing:.14em;text-transform:uppercase;font-weight:700;font-size:12px;color:#c8dcff}.hero h1{font-size:clamp(28px,5vw,44px);margin:9px 0}.hero p{margin:6px 0;max-width:720px}.pill{display:inline-block;background:#ffffff22;border:1px solid #ffffff55;border-radius:40px;padding:5px 12px;font-size:13px;margin-top:14px}.main{margin-top:-20px;padding-bottom:50px}.card{background:white;border:1px solid #e2e9f1;box-shadow:0 9px 28px #1e36580c;border-radius:17px;padding:24px;margin-bottom:22px}h2{font-size:23px;color:var(--blue);margin:0 0 10px}h3{font-size:18px;margin:14px 0 10px}p{margin:8px 0}.intro{color:var(--muted)}.lex{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:10px;margin-top:16px}.lex>div{background:#f4f7fc;padding:12px;border-radius:11px;border-left:3px solid #7797c6}.lex b{color:var(--blue)}.lex small{display:block;color:#5a6675}.example{background:#f5f8fe;border-left:4px solid var(--mid);padding:14px 16px;border-radius:8px;margin:15px 0}.task{padding:16px 0;border-top:1px solid #edf0f5}.task:first-of-type{border-top:0}.task label{font-weight:650;display:block;margin-bottom:8px}.task select,.task input{border:1.5px solid #b2bed0;border-radius:8px;padding:10px 11px;font-size:16px;max-width:100%;background:white;color:var(--ink)}.task input{width:210px}.task select{width:min(100%,380px)}.task input:focus,.task select:focus{outline:3px solid #bad0f7;outline-offset:2px}.hint{font-size:14px;color:#69798d;margin-top:5px}.feedback{margin-top:10px;border-radius:9px;padding:11px 12px;font-size:15px}.feedback.good{background:var(--lightok);color:var(--ok)}.feedback.bad{background:var(--lightbad);color:var(--bad)}.feedback.hintbox{background:#fff8e8;color:#705110}.task input:disabled,.task select:disabled{background:#f1f5f9;opacity:1;color:#314358}.task .smallstatus{font-size:13px;color:var(--muted);margin-top:5px}.feedback:empty{display:none}.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:20px}.btn{background:var(--blue);color:white;border:0;border-radius:9px;padding:12px 17px;font-size:15px;font-weight:700;cursor:pointer}.btn.secondary{background:#e8eef7;color:var(--blue)}.btn:hover{filter:brightness(1.12)}.score{font-size:16px;font-weight:700;color:var(--blue)}.report{background:#eff5fe;border-radius:12px;padding:20px;margin:10px 0 25px}.report h2{margin-bottom:6px}.hidden{display:none}.note{font-size:14px;color:var(--muted)}.footer{text-align:center;font-size:13px;color:#617085;padding:8px 0 30px}@media(max-width:530px){.card{padding:18px}.task input{width:100%}.toolbar .btn{width:100%}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap"><div class="eyebrow">English practice · B1 Preliminary for Schools</div><h1>Travelling &amp; Holidays ✈️</h1><p>Learn useful travel vocabulary, practise it in context and understand your mistakes.</p><span class="pill">20 questions · 4 activities · Self-checking</span></div></header>
+<main class="wrap main"><section class="card"><h2>Before you start</h2><p class="intro">Read the words and examples. Then complete the four activities. Check each activity. If your answer is incorrect, you will get a hint and one more chance. After your second attempt, you will see the answer and its explanation. You can start again to practise.</p><h3>Useful vocabulary</h3><div class="lex" id="glossary"></div><div class="example"><b>Example:</b> “We <strong>booked</strong> our accommodation in advance.”<br><b>Español:</b> Reservamos nuestro alojamiento con antelación.</div></section>
+<section class="card"><h2>1. Choose the best word</h2><p class="intro">Select the correct answer for each sentence.</p><div id="section1"></div><div class="toolbar"><button class="btn" onclick="checkSection(1)">Check activity 1</button><span class="score" id="score1" aria-live="polite"></span></div></section>
+<section class="card"><h2>2. Complete the sentences</h2><p class="intro">Write <b>one word</b> in each gap. The first letter is given to help you.</p><div id="section2"></div><div class="toolbar"><button class="btn" onclick="checkSection(2)">Check activity 2</button><span class="score" id="score2" aria-live="polite"></span></div></section>
+<section class="card"><h2>3. Travel collocations</h2><p class="intro">Choose the natural combination of words.</p><div id="section3"></div><div class="toolbar"><button class="btn" onclick="checkSection(3)">Check activity 3</button><span class="score" id="score3" aria-live="polite"></span></div></section>
+<section class="card"><h2>4. Mixed revision challenge</h2><p class="intro">Show what you remember. Choose or write the missing travel word.</p><div id="section4"></div><div class="toolbar"><button class="btn" onclick="checkSection(4)">Check activity 4</button><span class="score" id="score4" aria-live="polite"></span></div></section>
+<section class="report" id="report"><h2>Your progress</h2><p id="total" aria-live="polite">Complete all 20 questions to see your total score.</p><div class="toolbar"><button class="btn secondary" onclick="resetAll()">Start again</button></div><p class="note">Tip: Use each hint to think again. You get two attempts per question. Your final score counts correct answers on either attempt.</p></section><div class="footer">Independent study · Teacher-reviewed content recommended before classroom use</div></main>
+<script>
+'use strict';
+const vocabulary=[['accommodation','a place where you stay · alojamiento'],['book','to reserve something · reservar'],['boarding pass','document used to board a plane · tarjeta de embarque'],['departure','the act/time of leaving · salida'],['destination','the place you travel to · destino'],['journey','travel from one place to another · trayecto'],['luggage','bags and suitcases · equipaje'],['sightseeing','visiting interesting places · visitas turísticas'],['suitcase','large travel case · maleta'],['delay','when something is late · retraso'],['abroad','in another country · en el extranjero'],['souvenir','something you buy to remember a place · recuerdo']];
+document.getElementById('glossary').innerHTML=vocabulary.map(([w,d])=>`<div><b>${w}</b><small>${d}</small></div>`).join('');
+const tasks={
+1:[
+{q:'We stayed in a small hotel because our usual _____ was fully booked.',options:['accommodation','boarding pass','departure'],answer:'accommodation',why:'Accommodation means a place to stay, such as a hotel, hostel or flat.'},
+{q:'Our _____ is Edinburgh, but we are changing trains in Glasgow.',options:['destination','suitcase','souvenir'],answer:'destination',why:'Your destination is the place you are travelling to.'},
+{q:'Please show your _____ before you get on the plane.',options:['boarding pass','journey','sightseeing'],answer:'boarding pass',why:'You need a boarding pass to board an aeroplane.'},
+{q:'We went _____ in London and visited the Tower of London.',options:['sightseeing','luggage','departure'],answer:'sightseeing',why:'Go sightseeing means visit interesting or famous places.'},
+{q:'The train had a two-hour _____ because of heavy snow.',options:['delay','destination','souvenir'],answer:'delay',why:'A delay is when something happens later than planned.'}
+],
+2:[
+{q:'My family travelled a_____ for the first time last summer.',answer:'abroad',why:'Abroad means in or to another country. “Travel abroad” is a common expression.'},
+{q:'I bought a s_____ to remember our trip to York.',answer:'souvenir',why:'A souvenir is an object you keep to remember a place.'},
+{q:'Put your clothes in your s_____ before we leave.',answer:'suitcase',why:'A suitcase is a large case used for carrying clothes when travelling.'},
+{q:'Our flight d_____ is at 8:30 a.m.',answer:'departure',why:'Departure means leaving a place. “Flight departure” refers to when a flight leaves.'},
+{q:'We need to b_____ our train tickets online before Friday.',answer:'book',why:'Book is the verb meaning reserve a ticket, hotel or other service.'}
+],
+3:[
+{q:'Which phrase means “to board an aeroplane”?',options:['get on a plane','do a plane','take on a plane'],answer:'get on a plane',why:'We say “get on a plane” when we board it.'},
+{q:'We should _____ a hotel before the school holidays.',options:['book','make','do'],answer:'book',why:'We say “book a hotel” to reserve a room.'},
+{q:'I always _____ photos when I visit a new city.',options:['take','make','do'],answer:'take',why:'The natural collocation is “take photos”.'},
+{q:'Please _____ your luggage at the check-in desk.',options:['check in','look after to','get off'],answer:'check in',why:'We can “check in luggage” at the airport before flying.'},
+{q:'We _____ a day trip to Brighton during our holiday.',options:['went on','made on','did on'],answer:'went on',why:'We say “go on a trip”; in the past this becomes “went on a trip”.'}
+],
+4:[
+{q:'The train _____ from Manchester to Leeds took about an hour.',answer:'journey',why:'A journey is the act of travelling from one place to another.'},
+{q:'We need to arrive at the airport two hours before _____.',options:['departure','souvenir','sightseeing'],answer:'departure',why:'Departure is the scheduled time when a flight leaves.'},
+{q:'Choose the correct sentence.',options:['We took lots of photos on holiday.','We made lots of photos on holiday.','We did lots of photos on holiday.'],answer:'We took lots of photos on holiday.',why:'In English, the natural expression is “take photos”.'},
+{q:'My suitcase was too heavy, so I had to remove some _____.',answer:'luggage',why:'Luggage is an uncountable noun meaning bags and suitcases. Here it means items of luggage or packed belongings; in everyday English “things” might also fit, so focus on the travel-word-bank context.'},
+{q:'We _____ a room online before travelling to Bath.',options:['booked','boarded','departed'],answer:'booked',why:'Book a room means reserve accommodation in advance.'}
+]};
+// Ensure unique-answer tasks: item 4 in final revision uses an explicit definition, not a semantically open blank.
+tasks[4][3]={q:'Our bags and suitcases are called _____.',answer:'luggage',why:'Luggage is the general uncountable noun for bags and suitcases used when travelling.'};
+// Written for each individual question: none of these hints gives away the answer.
+const hints={
+1:[
+ 'Think about the general word for a place where you stay while travelling.',
+ 'You need the name of the final place on your route, not a travel object.',
+ 'Which document do airport staff scan when you board?',
+ 'The expression is “go + -ing” for visiting famous places.',
+ 'Which noun describes a train arriving later than planned?'
+],
+2:[
+ 'This word describes travelling to another country. It starts with “a”.',
+ 'This is an object you buy to remember a holiday. It starts with “s”.',
+ 'You pack clothes in this item. It starts with “s”.',
+ 'Look for the noun related to the verb “depart”.',
+ 'Think of the verb for reserving tickets in advance.'
+],
+3:[
+ 'We use “get on” with buses, trains and another form of transport.',
+ 'Choose the verb we use when reserving accommodation.',
+ 'English uses the same verb for photos as for a seat or a shower.',
+ 'Think about the two-word verb used at an airport desk for bags.',
+ 'Which expression follows the pattern “go on a trip” in the past?'
+],
+4:[
+ 'You need a noun describing travel between two places, not the vehicle.',
+ 'Think about the noun for the time a plane leaves.',
+ 'English uses “take” with photographs. Which sentence follows this pattern?',
+ 'Think of the collective noun for travel bags and suitcases.',
+ 'Choose the past tense of the verb meaning “reserve”.'
+]};
+const progress={};
+const sectionComplete={1:false,2:false,3:false,4:false};
+function normalise(s){return String(s).trim().toLocaleLowerCase('en-GB').replace(/[.!?]+$/,'').replace(/\s+/g,' ')}
+function build(){
+ for(const [section,arr] of Object.entries(tasks)){
+  document.getElementById('section'+section).innerHTML=arr.map((t,i)=>{
+   const id=`q${section}-${i}`;
+   const ctrl=t.options?`<select id="${id}" aria-label="Answer ${i+1}"><option value="">Choose an answer…</option>${t.options.map(o=>`<option value="${o.replaceAll('&','&amp;').replaceAll('"','&quot;')}">${o}</option>`).join('')}</select>`:`<input id="${id}" autocomplete="off" spellcheck="false" aria-label="Answer ${i+1}" placeholder="Type one word">`;
+   progress[id]={attempts:0,lastWrong:null,done:false,correct:false};
+   return `<div class="task"><label for="${id}">${i+1}. ${t.q}</label>${ctrl}<div class="feedback" id="f${section}-${i}" role="status" aria-live="polite"></div><div class="smallstatus" id="st${section}-${i}"></div></div>`;
+  }).join('');
+ }
+}
+function checkSection(section){
+ tasks[section].forEach((task,i)=>{
+  const id=`q${section}-${i}`, el=document.getElementById(id), out=document.getElementById(`f${section}-${i}`), status=document.getElementById(`st${section}-${i}`), p=progress[id];
+  if(p.done)return;
+  const value=normalise(el.value);
+  if(!value){out.className='feedback hintbox';out.textContent='Please enter an answer before checking. No attempt used.';return;}
+  if(p.attempts===1 && value===p.lastWrong){out.className='feedback hintbox';out.textContent='Change your answer before trying again. Hint: '+hints[section][i];return;}
+  p.attempts++;
+  const ok=value===normalise(task.answer);
+  if(ok){
+   p.done=true;p.correct=true;
+   out.className='feedback good';out.textContent=`✓ Correct${p.attempts===2?' on your second attempt':''}! ${task.why}`;
+   status.textContent=`Completed · ${p.attempts} attempt${p.attempts>1?'s':''}`;
+  }else if(p.attempts===1){
+   p.lastWrong=value;
+   out.className='feedback hintbox';out.textContent='Not quite. Hint: '+hints[section][i]+' You have one more attempt.';
+   status.textContent='One attempt remaining';
+  }else{
+   p.done=true;p.correct=false;
+   out.className='feedback bad';out.textContent='Second attempt complete. Correct answer: '+task.answer+'. '+task.why;
+   status.textContent='Completed · 2 attempts';
+  }
+  el.setAttribute('aria-invalid',String(!ok));
+  el.style.borderColor=ok?'#28966b':p.done?'#c44b5f':'#b38622';
+  if(p.done)el.disabled=true;
+ });
+ const finished=tasks[section].filter((_,i)=>progress[`q${section}-${i}`].done).length;
+ const correct=tasks[section].filter((_,i)=>progress[`q${section}-${i}`].correct).length;
+ sectionComplete[section]=finished===tasks[section].length;
+ document.getElementById('score'+section).textContent=`${correct}/5 correct · ${finished}/5 completed`;
+ updateTotal();
+}
+function updateTotal(){
+ let completed=0,correct=0;
+ for(let s=1;s<=4;s++)tasks[s].forEach((_,i)=>{const p=progress[`q${s}-${i}`];if(p.done)completed++;if(p.correct)correct++});
+ document.getElementById('total').textContent=completed===20?`Your total: ${correct}/20 (${Math.round(correct/20*100)}%). ${correct===20?'Excellent work!':'Read the explanations, then select Start again for more practice.'}`:`Progress: ${completed}/20 questions completed · ${correct} correct so far. Finish all questions for your final score.`;
+}
+function resetAll(){
+ for(let s=1;s<=4;s++){
+  sectionComplete[s]=false;
+  document.getElementById('score'+s).textContent='';
+  tasks[s].forEach((_,i)=>{
+   const id=`q${s}-${i}`,el=document.getElementById(id);
+   progress[id]={attempts:0,lastWrong:null,done:false,correct:false};
+   el.disabled=false;el.value='';el.style.borderColor='';el.removeAttribute('aria-invalid');
+   const f=document.getElementById(`f${s}-${i}`);f.textContent='';f.className='feedback';
+   document.getElementById(`st${s}-${i}`).textContent='';
+  });
+ }
+ updateTotal();window.scrollTo({top:0,behavior:'smooth'});
+}
+build();
+</script>
+</body></html>
