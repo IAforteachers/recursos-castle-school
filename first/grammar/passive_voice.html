@@ -1,0 +1,2722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="handbook">
+  <title>Mastering the Passive Voice — English Grammar Handbook &amp; Practice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Page and surfaces */
+      --background: #ffffff;
+      --surface-container-low: #f5f6f8;
+      --surface-container: #e8eaee;
+      --surface-container-high: #d8dce3;
+
+      /* Ink */
+      --on-surface: #0b0c0c;
+      --on-surface-variant: #4b5563;
+
+      /* Rules */
+      --outline: #0b0c0c;
+      --outline-variant: #cbd5e1;
+
+      /* School Brand Palette: Royal Blue & Red (WCAG AA/AAA verified) */
+      --primary: #1e40af;                  /* Royal Blue: index rules, step badges, primary buttons (8.72:1 on white) */
+      --primary-hover: #1d4ed8;            /* Bright Royal Blue hover (6.70:1 on white) */
+      --primary-ledge: #0f2167;            /* Deep Royal Blue button ground */
+      --on-primary: #ffffff;
+      --primary-container: #dbeafe;        /* Soft Royal Blue tint for tags & highlights */
+      --on-primary-container: #1e3a8a;     /* Deep Royal Blue ink on tint */
+
+      --brand-red: #b91c1c;                /* School Red: warning rules, passive engine tags, error states (6.47:1 on white) */
+      --brand-red-hover: #991b1b;
+      --brand-red-ledge: #7f1d1d;
+      --on-brand-red: #ffffff;
+      --brand-red-container: #fee2e2;      /* Soft Red tint for watch-out tags */
+      --on-brand-red-container: #7f1d1d;
+
+      --secondary: #1e40af;
+      --tertiary: #b91c1c;
+      --error: #b91c1c;
+      --on-error: #ffffff;
+
+      /* Semantic states */
+      --positive: #15803d;
+      --positive-container: #dcfce7;
+      --on-positive-container: #14532d;
+      --warning: #92400e;
+      --warning-container: #fef3c7;
+      --on-warning-container: #78350f;
+
+      /* Data & diagram series */
+      --data-1: #1e40af;
+      --data-2: #b91c1c;
+      --data-3: #15803d;
+      --data-4: #4b5563;
+      --data-context: #cbd5e1;
+
+      /* Focus */
+      --focus-yellow: #ffdd00;
+      --focus: #1e40af;
+      --focus-ring: 3px solid var(--focus-yellow);
+      --focus-bar: inset 0 0 0 2px var(--on-surface);
+      --focus-underline: 0 -2px var(--focus-yellow), 0 4px var(--on-surface);
+
+      /* Fonts */
+      --font-headline: 'Public Sans', sans-serif;
+      --font-body: 'Public Sans', sans-serif;
+      --font-label: 'Public Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Shape (Handbook square precision) */
+      --rounded: 0;
+      --rounded-lg: 0;
+      --rounded-full: 0;
+
+      /* Style effects */
+      --top-index-rule: 6px solid var(--primary);
+      --red-accent-rule: 4px solid var(--brand-red);
+      --inset-rule-blue: 5px solid var(--primary);
+      --inset-rule-red: 5px solid var(--brand-red);
+      --inset-rule-green: 5px solid var(--positive);
+      --inset-rule-amber: 5px solid var(--warning);
+      --button-ground: 0 2px 0 var(--primary-ledge);
+      --button-ground-red: 0 2px 0 var(--brand-red-ledge);
+      --button-ground-secondary: 0 2px 0 var(--on-surface-variant);
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.25rem, 1.4rem + 3.2vw, 3.625rem);
+      --headline-size: clamp(1.625rem, 1.2rem + 1.5vw, 2.25rem);
+      --subhead-size: clamp(1.1875rem, 1.05rem + 0.5vw, 1.4375rem);
+      --body-size: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.8125rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 5.5rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-xl);
+      padding: var(--space-lg);
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: var(--font-headline);
+      color: var(--on-surface);
+      margin: 0;
+      letter-spacing: -0.015em;
+    }
+    h1 {
+      font-size: var(--display-size);
+      font-weight: 800;
+      line-height: 1.08;
+    }
+    h2 {
+      font-size: var(--headline-size);
+      font-weight: 800;
+      line-height: 1.15;
+    }
+    h3 {
+      font-size: var(--subhead-size);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+    p {
+      margin: 0 0 var(--space-md) 0;
+      max-width: 68ch;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    a {
+      color: var(--primary);
+      text-decoration: underline;
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 3px;
+      font-weight: 600;
+    }
+    a:hover {
+      color: var(--brand-red);
+      text-decoration-thickness: 3px;
+    }
+    a:focus-visible {
+      outline: none;
+      background: var(--focus-yellow);
+      color: var(--on-surface);
+      text-decoration: none;
+      box-shadow: var(--focus-underline);
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    /* Handbook Top Index Rule & Brand Masthead */
+    .index-header {
+      border-top: var(--top-index-rule);
+      border-bottom: 2px solid var(--brand-red);
+      padding: var(--space-sm) 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-label);
+      font-weight: 700;
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      color: var(--primary);
+    }
+    .brand-pip-blue {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: var(--primary);
+    }
+    .brand-pip-red {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: var(--brand-red);
+    }
+    .level-tag {
+      background: var(--brand-red);
+      color: var(--on-brand-red);
+      padding: var(--space-xs) var(--space-sm);
+      font-size: var(--label-size);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-block {
+      padding-top: var(--space-lg);
+      padding-bottom: var(--space-lg);
+      border-bottom: 1px solid var(--outline-variant);
+    }
+    .hero-lede {
+      font-size: clamp(1.125rem, 1.05rem + 0.4vw, 1.3125rem);
+      color: var(--on-surface);
+      margin-top: var(--space-md);
+      max-width: 64ch;
+    }
+
+    /* Section Navigation & Mastery Strip */
+    .mastery-bar {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      background: var(--surface-container-low);
+      border-left: var(--inset-rule-blue);
+      padding: var(--space-md) var(--space-lg);
+      margin-top: var(--space-lg);
+      align-items: center;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm) var(--space-md);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-size: 0.9375rem;
+      min-height: 36px;
+    }
+    .nav-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      background: var(--primary);
+      color: var(--on-primary);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .nav-num--red {
+      background: var(--brand-red);
+      color: var(--on-brand-red);
+    }
+
+    .progress-summary {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .progress-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-sm);
+    }
+    .progress-label {
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--on-surface-variant);
+    }
+    .progress-count {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+    }
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: var(--surface-container);
+      border: 1px solid var(--outline-variant);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--primary);
+      transition: width var(--dur-short) var(--ease-out);
+    }
+    .progress-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-top: var(--space-xs);
+    }
+    .mini-status {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* Two-column editorial workspace: main prose/labs + reference rail */
+    .content-columns {
+      display: grid;
+      grid-template-columns: minmax(0, 2.25fr) minmax(0, 0.95fr);
+      gap: var(--space-2xl);
+      align-items: start;
+    }
+
+    .main-column {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2xl);
+    }
+
+    .reference-rail {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      border-top: var(--red-accent-rule);
+      background: var(--surface-container-low);
+      padding: var(--space-lg);
+    }
+
+    /* Section Headings with Step Badges */
+    .grammar-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      padding-top: var(--space-md);
+      border-top: 2px solid var(--outline-variant);
+    }
+    .grammar-section:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+    .section-heading-row {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+    }
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      margin-top: 4px;
+      background: var(--primary);
+      color: var(--on-primary);
+      font-weight: 800;
+      font-size: 1rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .step-badge--red {
+      background: var(--brand-red);
+      color: var(--on-brand-red);
+    }
+    .section-kicker {
+      display: block;
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--brand-red);
+      margin-bottom: var(--space-xs);
+    }
+
+    /* Inset Callouts */
+    .inset {
+      border-left: var(--inset-rule-blue);
+      background: var(--surface-container-low);
+      padding: var(--space-md) var(--space-lg);
+    }
+    .inset--red {
+      border-left: var(--inset-rule-red);
+    }
+    .inset--white {
+      background: var(--background);
+      border-top: 1px solid var(--outline-variant);
+      border-right: 1px solid var(--outline-variant);
+      border-bottom: 1px solid var(--outline-variant);
+    }
+    .inset-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: var(--space-xs);
+      color: var(--on-surface);
+    }
+
+    /* Formula Display */
+    .formula-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+      background: var(--surface-container-low);
+      border-left: var(--inset-rule-blue);
+      padding: var(--space-md) var(--space-lg);
+      font-weight: 700;
+    }
+    .token-blue {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      padding: var(--space-xs) var(--space-sm);
+      font-family: var(--font-mono);
+      font-size: 0.9375rem;
+    }
+    .token-red {
+      background: var(--brand-red-container);
+      color: var(--on-brand-red-container);
+      padding: var(--space-xs) var(--space-sm);
+      font-family: var(--font-mono);
+      font-size: 0.9375rem;
+    }
+    .token-neutral {
+      background: var(--surface-container);
+      color: var(--on-surface);
+      padding: var(--space-xs) var(--space-sm);
+      font-family: var(--font-mono);
+      font-size: 0.9375rem;
+    }
+    .plus-sign {
+      font-weight: 800;
+      color: var(--on-surface-variant);
+    }
+
+    /* Status Tags */
+    .status-tag {
+      display: inline-block;
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-weight: 700;
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: var(--space-xs) var(--space-sm);
+    }
+    .status-tag--red {
+      background: var(--brand-red-container);
+      color: var(--on-brand-red-container);
+    }
+    .status-tag--green {
+      background: var(--positive-container);
+      color: var(--on-positive-container);
+    }
+
+    /* Grounded Buttons (Handbook style) */
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      font-family: var(--font-label);
+      font-weight: 700;
+      font-size: 0.9375rem;
+      line-height: 1.2;
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--primary);
+      color: var(--on-primary);
+      border: 0;
+      border-radius: var(--rounded);
+      box-shadow: var(--button-ground);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+    }
+    .button:hover:not(:disabled) {
+      background: var(--primary-hover);
+    }
+    .button:active:not(:disabled) {
+      transform: translateY(2px);
+      box-shadow: none;
+    }
+    .button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+    .button--red {
+      background: var(--brand-red);
+      color: var(--on-brand-red);
+      box-shadow: var(--button-ground-red);
+    }
+    .button--red:hover:not(:disabled) {
+      background: var(--brand-red-hover);
+    }
+    .button--secondary {
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border: 1px solid var(--outline-variant);
+      box-shadow: var(--button-ground-secondary);
+    }
+    .button--secondary:hover:not(:disabled) {
+      background: var(--surface-container);
+    }
+    .button--compact {
+      min-height: 36px;
+      padding: var(--space-xs) var(--space-sm);
+      font-size: 0.875rem;
+    }
+    .button:focus-visible,
+    input:focus-visible,
+    select:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: 0;
+      box-shadow: var(--focus-bar);
+    }
+
+    /* Interactive Lab Boxes */
+    .lab-panel {
+      border: 2px solid var(--outline);
+      background: var(--background);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      container-type: inline-size;
+    }
+    .lab-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      border-bottom: 1px solid var(--outline-variant);
+      padding-bottom: var(--space-sm);
+    }
+    .lab-title {
+      font-weight: 800;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--primary);
+    }
+    .tense-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+    .tab-btn {
+      min-height: 40px;
+      padding: var(--space-xs) var(--space-sm);
+      font-size: 0.875rem;
+      font-weight: 700;
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border: 1px solid var(--outline-variant);
+      cursor: pointer;
+    }
+    .tab-btn:hover {
+      background: var(--surface-container);
+    }
+    .tab-btn[aria-pressed="true"] {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+    .tab-btn--red[aria-pressed="true"] {
+      background: var(--brand-red);
+      color: var(--on-brand-red);
+      border-color: var(--brand-red);
+    }
+
+    .transformation-stage {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-md);
+      background: var(--surface-container-low);
+      padding: var(--space-md);
+      border-left: var(--inset-rule-red);
+    }
+    .voice-row {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .voice-badge {
+      font-size: var(--label-size);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--on-surface-variant);
+    }
+    .sentence-display {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: var(--space-xs);
+      font-size: 1.125rem;
+      line-height: 1.6;
+    }
+    .part-box {
+      padding: 2px var(--space-sm);
+      font-weight: 600;
+    }
+    .part-subject {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border-bottom: 2px solid var(--primary);
+    }
+    .part-verb {
+      background: var(--brand-red-container);
+      color: var(--on-brand-red-container);
+      border-bottom: 2px solid var(--brand-red);
+    }
+    .part-object {
+      background: var(--surface-container);
+      color: var(--on-surface);
+      border-bottom: 2px solid var(--on-surface-variant);
+    }
+    .part-rest {
+      color: var(--on-surface);
+    }
+
+    /* Tables (Handbook ruled, no vertical borders) */
+    .table-wrap {
+      overflow-x: auto;
+      border-top: 2px solid var(--outline);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9375rem;
+    }
+    th {
+      font-weight: 700;
+      padding: var(--space-sm) var(--space-sm);
+      border-bottom: 2px solid var(--outline);
+      color: var(--on-surface);
+      white-space: nowrap;
+    }
+    td {
+      padding: var(--space-sm) var(--space-sm);
+      border-bottom: 1px solid var(--outline-variant);
+      vertical-align: top;
+    }
+    .mono-formula {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Card Grid for Uses & Comparisons */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .rule-card {
+      background: var(--surface-container-low);
+      border-top: 3px solid var(--primary);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .rule-card--red {
+      border-top-color: var(--brand-red);
+    }
+    .rule-card h3 {
+      font-size: 1.0625rem;
+    }
+    .example-line {
+      font-style: italic;
+      color: var(--on-surface);
+      border-top: 1px solid var(--outline-variant);
+      padding-top: var(--space-xs);
+      margin-top: var(--space-xs);
+    }
+
+    /* Interactive Why-Passive cards */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .why-card {
+      border: 1px solid var(--outline-variant);
+      background: var(--background);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      justify-content: space-between;
+    }
+    .why-reveal {
+      border-left: var(--inset-rule-blue);
+      background: var(--surface-container-low);
+      padding: var(--space-sm) var(--space-md);
+      font-size: 0.9375rem;
+      display: none;
+    }
+    .why-reveal.is-open {
+      display: block;
+    }
+
+    /* Exercise Sections */
+    .practice-band {
+      margin-top: var(--space-xl);
+      padding-top: var(--space-xl);
+      border-top: 6px solid var(--primary);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2xl);
+    }
+    .exercise-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      padding-bottom: var(--space-xl);
+      border-bottom: 2px solid var(--outline-variant);
+    }
+    .exercise-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: var(--space-md);
+      background: var(--surface-container-low);
+      border-left: var(--inset-rule-red);
+      padding: var(--space-md) var(--space-lg);
+    }
+    .exercise-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+    .score-pill {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.9375rem;
+      background: var(--background);
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: var(--space-xs) var(--space-sm);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Individual Question Item */
+    .question-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .question-card {
+      border: 1px solid var(--outline-variant);
+      border-left: 5px solid var(--outline-variant);
+      background: var(--background);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      transition: background-color var(--dur-short) var(--ease-out);
+    }
+    .question-card.state-hint {
+      border-left-color: var(--warning);
+      background: var(--background);
+    }
+    .question-card.state-correct {
+      border-left-color: var(--positive);
+      background: var(--surface-container-low);
+    }
+    .question-card.state-revealed {
+      border-left-color: var(--brand-red);
+      background: var(--background);
+    }
+    .q-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .q-num {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: var(--primary);
+    }
+    .q-attempt-badge {
+      font-size: var(--label-size);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 2px var(--space-sm);
+      background: var(--surface-container);
+      color: var(--on-surface-variant);
+    }
+    .q-attempt-badge.is-correct {
+      background: var(--positive-container);
+      color: var(--on-positive-container);
+    }
+    .q-attempt-badge.is-hint {
+      background: var(--warning-container);
+      color: var(--on-warning-container);
+    }
+    .q-attempt-badge.is-revealed {
+      background: var(--brand-red-container);
+      color: var(--on-brand-red-container);
+    }
+
+    .q-source-sentence {
+      color: var(--on-surface-variant);
+      font-size: 0.96875rem;
+    }
+    .q-target-prompt {
+      font-size: 1.0625rem;
+      font-weight: 500;
+      color: var(--on-surface);
+      line-height: 1.55;
+    }
+    .blank-marker {
+      display: inline-block;
+      min-width: 110px;
+      border-bottom: 2px solid var(--primary);
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--primary);
+      text-align: center;
+      padding: 0 var(--space-xs);
+    }
+    .error-highlight {
+      background: var(--brand-red-container);
+      color: var(--on-brand-red-container);
+      padding: 1px var(--space-xs);
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-style: wavy;
+      text-decoration-color: var(--brand-red);
+    }
+
+    /* Input Controls Row */
+    .answer-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      gap: var(--space-sm);
+      margin-top: var(--space-xs);
+    }
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      flex: 1 1 260px;
+      max-width: 440px;
+    }
+    .field-label {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--on-surface);
+    }
+    .text-input {
+      width: 100%;
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-sm);
+      font-size: 1rem;
+      border: 2px solid var(--outline);
+      border-radius: var(--rounded);
+      background: var(--background);
+      color: var(--on-surface);
+    }
+    .text-input:disabled {
+      background: var(--surface-container-low);
+      border-color: var(--outline-variant);
+      color: var(--on-surface);
+      font-weight: 600;
+    }
+
+    /* Multiple Choice Option Row (Exercise 2) */
+    .choice-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-xs);
+    }
+    .choice-btn {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      background: var(--background);
+      border: 2px solid var(--outline);
+      color: var(--on-surface);
+      font-weight: 600;
+      font-size: 0.96875rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    .choice-btn:hover:not(:disabled) {
+      background: var(--primary-container);
+    }
+    .choice-btn[aria-pressed="true"] {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+    .choice-btn.is-wrong-choice {
+      background: var(--brand-red-container);
+      color: var(--on-brand-red-container);
+      border-color: var(--brand-red);
+      text-decoration: line-through;
+    }
+    .choice-btn.is-right-choice {
+      background: var(--positive-container);
+      color: var(--on-positive-container);
+      border-color: var(--positive);
+      font-weight: 700;
+    }
+    .choice-btn:disabled {
+      cursor: default;
+    }
+    .choice-btn:focus-visible {
+      outline: var(--focus-ring);
+      box-shadow: var(--focus-bar);
+    }
+
+    /* Feedback Panels */
+    .feedback-box {
+      margin-top: var(--space-xs);
+      padding: var(--space-sm) var(--space-md);
+      font-size: 0.9375rem;
+      display: none;
+    }
+    .feedback-box.is-visible {
+      display: block;
+    }
+    .feedback-box.is-notice {
+      border-left: var(--inset-rule-red);
+      background: var(--surface-container-low);
+      color: var(--brand-red);
+      font-weight: 600;
+    }
+    .feedback-box.is-hint {
+      border-left: var(--inset-rule-amber);
+      background: var(--warning-container);
+      color: var(--on-warning-container);
+    }
+    .feedback-box.is-correct {
+      border-left: var(--inset-rule-green);
+      background: var(--positive-container);
+      color: var(--on-positive-container);
+    }
+    .feedback-box.is-revealed {
+      border-left: var(--inset-rule-red);
+      background: var(--brand-red-container);
+      color: var(--on-brand-red-container);
+    }
+    .feedback-title {
+      font-weight: 800;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* Reference Rail Details */
+    .rail-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .rail-list li {
+      border-bottom: 1px solid var(--outline-variant);
+      padding-bottom: var(--space-sm);
+      font-size: 0.9375rem;
+    }
+    .rail-list li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .v3-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-xs);
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+    }
+    .v3-head {
+      font-weight: 700;
+      color: var(--primary);
+      border-bottom: 1px solid var(--outline);
+      padding-bottom: 2px;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 2px solid var(--outline);
+      padding-top: var(--space-lg);
+      padding-bottom: var(--space-xl);
+      font-size: 0.9375rem;
+      color: var(--on-surface-variant);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    @container (max-width: 480px) {
+      .sentence-display { font-size: 1rem; }
+    }
+
+    @media (max-width: 900px) {
+      .content-columns {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .mastery-bar {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        padding: var(--space-md);
+        gap: var(--space-lg);
+      }
+      .question-card {
+        padding: var(--space-md);
+      }
+      .answer-controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .field-group {
+        max-width: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-grid">
+    <header>
+      <div class="index-header">
+        <span class="brand-mark">
+          <span class="brand-pip-blue" aria-hidden="true"></span>
+          <span class="brand-pip-red" aria-hidden="true"></span>
+          <span>English Grammar Reference &amp; Practice</span>
+        </span>
+        <span class="level-tag">Intermediate ESL / B1–B2</span>
+      </div>
+
+      <div class="hero-block">
+        <h1>Mastering the Passive Voice</h1>
+        <p class="hero-lede">
+          Learn how English shifts focus from who performs an action to what receives it—from basic <strong>to be + past participle</strong> tenses to informal <strong>get</strong>-passives and advanced reporting structures.
+        </p>
+
+        <div class="mastery-bar" aria-label="Course navigation and mastery progress">
+          <nav aria-label="Section index">
+            <ul class="nav-links">
+              <li><a href="#sec-structure"><span class="nav-num">01</span> Structure</a></li>
+              <li><a href="#sec-uses"><span class="nav-num">02</span> Main Uses</a></li>
+              <li><a href="#sec-get"><span class="nav-num">03</span> Informal Get</a></li>
+              <li><a href="#sec-reporting"><span class="nav-num">04</span> Reporting Verbs</a></li>
+              <li><a href="#ex-1"><span class="nav-num nav-num--red">A</span> Ex. 1</a></li>
+              <li><a href="#ex-2"><span class="nav-num nav-num--red">B</span> Ex. 2</a></li>
+              <li><a href="#ex-3"><span class="nav-num nav-num--red">C</span> Ex. 3</a></li>
+              <li><a href="#ex-4"><span class="nav-num nav-num--red">D</span> Ex. 4</a></li>
+            </ul>
+          </nav>
+
+          <div class="progress-summary">
+            <div class="progress-header-row">
+              <span class="progress-label">Overall Practice Mastery</span>
+              <span class="progress-count" id="total-mastery-text">0 / 40</span>
+            </div>
+            <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="40" aria-valuenow="0" id="total-progress-bar">
+              <div class="progress-fill" id="total-progress-fill"></div>
+            </div>
+            <div class="progress-actions">
+              <span class="mini-status" id="total-attempted-text">0 sentences checked</span>
+              <button type="button" class="button button--secondary button--compact" id="reset-all-btn" onclick="resetAllProgress(this)">Reset all</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content-columns">
+      <main class="main-column">
+        <!-- SECTION 1: STRUCTURE & FORMATION -->
+        <section id="sec-structure" class="grammar-section">
+          <div class="section-heading-row">
+            <span class="step-badge" aria-hidden="true">01</span>
+            <div>
+              <span class="section-kicker">Core Mechanics</span>
+              <h2>Structure &amp; Formation: <em>to be</em> + Past Participle</h2>
+            </div>
+          </div>
+
+          <p>
+            In an <strong>active</strong> sentence, the grammatical subject performs the action (<em>“The chef baked the cake”</em>). In a <strong>passive</strong> sentence, the object of the active verb moves into the subject position so we focus on the receiver or result of the action (<em>“The cake was baked by the chef”</em>).
+          </p>
+
+          <div class="formula-strip" aria-label="Passive voice formula">
+            <span class="token-blue">New Subject (Receiver)</span>
+            <span class="plus-sign">+</span>
+            <span class="token-red">be (in the right tense)</span>
+            <span class="plus-sign">+</span>
+            <span class="token-red">Past Participle (V3)</span>
+            <span class="plus-sign">+</span>
+            <span class="token-neutral">[optional: by + agent]</span>
+          </div>
+
+          <div class="inset">
+            <div class="inset-title">Two Rules That Never Change</div>
+            <p>
+              <strong>1. Only <em>to be</em> changes tense.</strong> The main verb always stays in its past participle form (<em>written, built, repaired, seen</em>).<br>
+              <strong>2. Only transitive verbs (verbs with an object) can be passive.</strong> Intransitive verbs such as <em>arrive, happen, appear, sleep,</em> or <em>die</em> never have a passive form.
+            </p>
+          </div>
+
+          <!-- Interactive Active-Passive Transformer -->
+          <div class="lab-panel" aria-label="Interactive active to passive sentence transformer">
+            <div class="lab-header">
+              <span class="lab-title">Interactive Transformation Lab</span>
+              <button type="button" class="button button--secondary button--compact" id="neg-toggle-btn" onclick="togglePolarity()">Form: Positive</button>
+            </div>
+
+            <div class="tense-tabs" role="group" aria-label="Select tense">
+              <button type="button" class="tab-btn" aria-pressed="true" onclick="selectLabTense('present_simple', this)">Present Simple</button>
+              <button type="button" class="tab-btn" aria-pressed="false" onclick="selectLabTense('past_simple', this)">Past Simple</button>
+              <button type="button" class="tab-btn" aria-pressed="false" onclick="selectLabTense('present_cont', this)">Present Continuous</button>
+              <button type="button" class="tab-btn" aria-pressed="false" onclick="selectLabTense('present_perf', this)">Present Perfect</button>
+              <button type="button" class="tab-btn" aria-pressed="false" onclick="selectLabTense('future_will', this)">Future (will)</button>
+              <button type="button" class="tab-btn" aria-pressed="false" onclick="selectLabTense('modal', this)">Modal (must)</button>
+            </div>
+
+            <div class="transformation-stage" id="lab-stage">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Tense Reference Table -->
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tense / Structure</th>
+                  <th>Active Example</th>
+                  <th>Passive Formula</th>
+                  <th>Passive Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Present Simple</strong></td>
+                  <td>They clean the rooms daily.</td>
+                  <td class="mono-formula">am / is / are + V3</td>
+                  <td>The rooms <strong>are cleaned</strong> daily.</td>
+                </tr>
+                <tr>
+                  <td><strong>Past Simple</strong></td>
+                  <td>Someone stole my bike.</td>
+                  <td class="mono-formula">was / were + V3</td>
+                  <td>My bike <strong>was stolen</strong>.</td>
+                </tr>
+                <tr>
+                  <td><strong>Present Continuous</strong></td>
+                  <td>Workers are fixing the road.</td>
+                  <td class="mono-formula">am / is / are + being + V3</td>
+                  <td>The road <strong>is being fixed</strong>.</td>
+                </tr>
+                <tr>
+                  <td><strong>Past Continuous</strong></td>
+                  <td>They were painting the hall.</td>
+                  <td class="mono-formula">was / were + being + V3</td>
+                  <td>The hall <strong>was being painted</strong>.</td>
+                </tr>
+                <tr>
+                  <td><strong>Present Perfect</strong></td>
+                  <td>She has sent the invitations.</td>
+                  <td class="mono-formula">has / have + been + V3</td>
+                  <td>The invitations <strong>have been sent</strong>.</td>
+                </tr>
+                <tr>
+                  <td><strong>Past Perfect</strong></td>
+                  <td>They had locked the gate.</td>
+                  <td class="mono-formula">had + been + V3</td>
+                  <td>The gate <strong>had been locked</strong>.</td>
+                </tr>
+                <tr>
+                  <td><strong>Future &amp; Modals</strong></td>
+                  <td>We will / must sign the form.</td>
+                  <td class="mono-formula">will / modal + be + V3</td>
+                  <td>The form <strong>will / must be signed</strong>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SECTION 2: MAIN USES -->
+        <section id="sec-uses" class="grammar-section">
+          <div class="section-heading-row">
+            <span class="step-badge" aria-hidden="true">02</span>
+            <div>
+              <span class="section-kicker">Context &amp; Register</span>
+              <h2>Main Uses: Why Speakers Choose the Passive</h2>
+            </div>
+          </div>
+
+          <p>
+            Good English speakers do not use the passive at random. Choose the passive voice whenever one of these four communicative goals applies:
+          </p>
+
+          <div class="card-grid">
+            <article class="rule-card">
+              <span class="status-tag">Use 1</span>
+              <h3>Emphasizing the Action or Object</h3>
+              <p>What happened or who received the action is the main topic, rather than who performed it.</p>
+              <p class="example-line">“A new cancer treatment <strong>has been approved</strong> after five years of trials.”</p>
+            </article>
+
+            <article class="rule-card rule-card--red">
+              <span class="status-tag status-tag--red">Use 2</span>
+              <h3>Unknown Agent</h3>
+              <p>We do not know who did the action, so naming a vague subject like “someone” adds nothing.</p>
+              <p class="example-line">“Our office window <strong>was smashed</strong> overnight.”</p>
+            </article>
+
+            <article class="rule-card">
+              <span class="status-tag">Use 3</span>
+              <h3>Contextually Obvious Agent</h3>
+              <p>The person or institution responsible is already obvious from context (police, doctors, workers, teachers).</p>
+              <p class="example-line">“The suspect <strong>was arrested</strong> outside the station.” <em>(obviously by the police)</em></p>
+            </article>
+
+            <article class="rule-card rule-card--red">
+              <span class="status-tag status-tag--red">Use 4</span>
+              <h3>Formal &amp; Bureaucratic Tone</h3>
+              <p>Public notices, official rules, scientific reports, and academic writing prefer an impersonal, objective tone.</p>
+              <p class="example-line">“All mobile phones <strong>must be switched off</strong> inside the examination hall.”</p>
+            </article>
+          </div>
+
+          <div class="inset inset--red">
+            <div class="inset-title">When to Keep <em>by + agent</em> vs. Drop It</div>
+            <p>
+              <strong>Drop <em>by + agent</em></strong> when the doer is unknown, obvious, or vague (<em>by someone, by people, by workers</em>).<br>
+              <strong>Keep <em>by + agent</em></strong> only when naming the doer adds essential or surprising credit: <em>“Guernica was painted <strong>by Pablo Picasso</strong> in 1937.”</em>
+            </p>
+          </div>
+
+          <!-- Interactive Why-Passive Explorer -->
+          <div class="why-grid" aria-label="Interactive passive reason analyzer">
+            <div class="why-card">
+              <div>
+                <span class="status-tag">Case A</span>
+                <p style="margin-top: var(--space-sm);"><strong>“The letters are delivered at 8:00 a.m. every day.”</strong></p>
+              </div>
+              <button type="button" class="button button--secondary button--compact" onclick="toggleWhyReveal('why-a', this)" aria-expanded="false">Show reason</button>
+              <div class="why-reveal" id="why-a">
+                <strong>Obvious agent:</strong> We obviously know postal workers deliver the mail, so adding <em>“by mail carriers”</em> is unnecessary.
+              </div>
+            </div>
+
+            <div class="why-card">
+              <div>
+                <span class="status-tag status-tag--red">Case B</span>
+                <p style="margin-top: var(--space-sm);"><strong>“Passengers are requested to remain seated until the doors open.”</strong></p>
+              </div>
+              <button type="button" class="button button--secondary button--compact" onclick="toggleWhyReveal('why-b', this)" aria-expanded="false">Show reason</button>
+              <div class="why-reveal" id="why-b">
+                <strong>Formal / bureaucratic tone:</strong> Official announcements sound polite, authoritative, and objective without saying <em>“We request passengers…”</em>.
+              </div>
+            </div>
+
+            <div class="why-card">
+              <div>
+                <span class="status-tag">Case C</span>
+                <p style="margin-top: var(--space-sm);"><strong>“Wait—my laptop has been taken from the desk!”</strong></p>
+              </div>
+              <button type="button" class="button button--secondary button--compact" onclick="toggleWhyReveal('why-c', this)" aria-expanded="false">Show reason</button>
+              <div class="why-reveal" id="why-c">
+                <strong>Unknown agent &amp; focus on object:</strong> The speaker does not know who took it and cares most about the missing laptop.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3: INFORMAL PASSIVE WITH GET -->
+        <section id="sec-get" class="grammar-section">
+          <div class="section-heading-row">
+            <span class="step-badge step-badge--red" aria-hidden="true">03</span>
+            <div>
+              <span class="section-kicker">Everyday Spoken English</span>
+              <h2>Informal Passive with <em>get</em></h2>
+            </div>
+          </div>
+
+          <p>
+            In everyday conversation, English speakers often replace <strong>be</strong> with <strong>get</strong> (<em>get + past participle</em>) to talk about <strong>accidents, mishaps, sudden changes, or things that happen to us unexpectedly</strong>.
+          </p>
+
+          <div class="card-grid">
+            <div class="rule-card">
+              <span class="status-tag status-tag--green">Natural with GET</span>
+              <h3>Actions, Mishaps &amp; Accidents</h3>
+              <p>Use <em>get</em> for dynamic events (often negative or surprising) in informal speech:</p>
+              <ul style="margin: var(--space-xs) 0 0 1.2rem; padding: 0;">
+                <li>My phone <strong>got stolen</strong> on the bus.</li>
+                <li>Drive carefully or you’ll <strong>get fined</strong>.</li>
+                <li>Two players <strong>got injured</strong> in the match.</li>
+                <li>We took a wrong turn and <strong>got lost</strong>.</li>
+              </ul>
+            </div>
+
+            <div class="rule-card rule-card--red">
+              <span class="status-tag status-tag--red">Never Use GET</span>
+              <h3>State Verbs &amp; Formal Writing</h3>
+              <p><strong>Exclude state verbs!</strong> Verbs describing thoughts, feelings, knowledge, or possession cannot take <em>get</em>:</p>
+              <ul style="margin: var(--space-xs) 0 0 1.2rem; padding: 0;">
+                <li><em>know, believe, understand, love, hate, own, respect, remember</em></li>
+                <li>Correct: The truth <strong>is known</strong> by everyone.</li>
+                <li>Wrong: <del>The truth got known by everyone.</del></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="inset inset--red">
+            <div class="inset-title">Crucial Grammar Difference: Negatives &amp; Questions</div>
+            <p>
+              Because <em>get</em> behaves like a normal main verb, negatives and questions need <strong>do / does / did</strong>:<br>
+              <strong>Be-passive:</strong> <em>“He <strong>wasn’t</strong> invited.”</em> / <em>“<strong>Were</strong> you fined?”</em><br>
+              <strong>Get-passive:</strong> <em>“He <strong>didn’t get</strong> invited.”</em> / <em>“<strong>Did</strong> you <strong>get</strong> fined?”</em>
+            </p>
+          </div>
+        </section>
+
+        <!-- SECTION 4: REPORTING VERBS & COMPLEX STRUCTURES -->
+        <section id="sec-reporting" class="grammar-section">
+          <div class="section-heading-row">
+            <span class="step-badge" aria-hidden="true">04</span>
+            <div>
+              <span class="section-kicker">Advanced Structures</span>
+              <h2>Reporting Verbs &amp; Infinitive Patterns</h2>
+            </div>
+          </div>
+
+          <p>
+            Journalists, academics, and formal speakers use passive reporting verbs (<em>say, think, believe, report, know, expect, consider, claim</em>) when reporting rumors, expert opinions, or general beliefs without naming a specific source.
+          </p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Pattern</th>
+                  <th>When to Use It</th>
+                  <th>Formula &amp; Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1. Impersonal <em>It</em></strong></td>
+                  <td>General reports (works for any tense in the <em>that</em>-clause).</td>
+                  <td>
+                    <span class="mono-formula">It + is/was + V3 + that + clause</span><br>
+                    <em>“<strong>It is thought that</strong> the castle is 500 years old.”</em>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>2. Simple Infinitive</strong></td>
+                  <td>Present state or repeated habit at the same time as the report.</td>
+                  <td>
+                    <span class="mono-formula">Subject + is/are + V3 + to + base verb</span><br>
+                    <em>“The castle <strong>is thought to be</strong> 500 years old.”</em>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>3. Continuous Infinitive</strong></td>
+                  <td>An action currently in progress right now.</td>
+                  <td>
+                    <span class="mono-formula">Subject + is/are + V3 + to be + -ing</span><br>
+                    <em>“The company <strong>is said to be developing</strong> a new battery.”</em>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>4. Perfect Infinitive</strong></td>
+                  <td><strong>Past actions</strong> that happened <em>before</em> the reporting verb.</td>
+                  <td>
+                    <span class="mono-formula">Subject + is/are + V3 + to have + V3</span><br>
+                    <em>“He <strong>is said to have left</strong> the city yesterday.”</em>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>5. Passive Perfect Infinitive</strong></td>
+                  <td>A <strong>past passive</strong> event that happened earlier.</td>
+                  <td>
+                    <span class="mono-formula">Subject + is/are + V3 + to have been + V3</span><br>
+                    <em>“The painting <strong>is believed to have been stolen</strong> in 1990.”</em>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Interactive Reporting Pattern Switcher -->
+          <div class="lab-panel" aria-label="Interactive reporting verb pattern builder">
+            <div class="lab-header">
+              <span class="lab-title">Reporting Time-Shift Explorer</span>
+              <span class="status-tag">Compare Time Reference</span>
+            </div>
+            <div class="tense-tabs" role="group" aria-label="Select reporting scenario">
+              <button type="button" class="tab-btn tab-btn--red" aria-pressed="true" onclick="selectReportCase('present', this)">Present State</button>
+              <button type="button" class="tab-btn tab-btn--red" aria-pressed="false" onclick="selectReportCase('ongoing', this)">Action in Progress</button>
+              <button type="button" class="tab-btn tab-btn--red" aria-pressed="false" onclick="selectReportCase('past_active', this)">Past Action (Active)</button>
+              <button type="button" class="tab-btn tab-btn--red" aria-pressed="false" onclick="selectReportCase('past_passive', this)">Past Action (Passive)</button>
+            </div>
+            <div class="transformation-stage" id="report-stage">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- PRACTICE BAND: 4 VARIED EXERCISE SECTIONS (10 SENTENCES EACH) -->
+        <div class="practice-band">
+          <div>
+            <span class="section-kicker">Interactive Practice Labs</span>
+            <h2>Test Your Understanding (40 Sentences)</h2>
+            <p>
+              Each section gives you <strong>two attempts</strong> per sentence. On your first wrong attempt, you will receive a targeted grammar hint so you can try again. Contractions (such as <em>isn’t, wasn’t, haven’t</em>) and full forms are both accepted, and extra spacing or capitalization differences are never penalized.
+            </p>
+          </div>
+
+          <!-- EXERCISE 1 -->
+          <section id="ex-1" class="exercise-section" aria-labelledby="ex1-heading">
+            <div class="exercise-header">
+              <div>
+                <span class="section-kicker">Exercise 1 · 10 Sentences · Fill in the Verb</span>
+                <h3 id="ex1-heading">Active-to-Passive Tense Transformation</h3>
+                <p style="margin-top: var(--space-xs); font-size: 0.96875rem;">Type only the missing passive verb phrase to complete each transformed sentence.</p>
+              </div>
+              <div class="exercise-meta">
+                <span class="score-pill" id="score-ex1">0 / 10</span>
+                <button type="button" class="button button--secondary button--compact" onclick="resetSection('ex1', this)">Reset Section</button>
+              </div>
+            </div>
+            <div class="question-list" id="container-ex1"></div>
+          </section>
+
+          <!-- EXERCISE 2 -->
+          <section id="ex-2" class="exercise-section" aria-labelledby="ex2-heading">
+            <div class="exercise-header">
+              <div>
+                <span class="section-kicker">Exercise 2 · 10 Sentences · Choose the Natural Form</span>
+                <h3 id="ex2-heading">Informal <em>get</em>-Passive vs. <em>be</em>-Passive</h3>
+                <p style="margin-top: var(--space-xs); font-size: 0.96875rem;">Select the grammatically correct option. Watch out for state verbs, formal tone, and <em>do/did</em> support.</p>
+              </div>
+              <div class="exercise-meta">
+                <span class="score-pill" id="score-ex2">0 / 10</span>
+                <button type="button" class="button button--secondary button--compact" onclick="resetSection('ex2', this)">Reset Section</button>
+              </div>
+            </div>
+            <div class="question-list" id="container-ex2"></div>
+          </section>
+
+          <!-- EXERCISE 3 -->
+          <section id="ex-3" class="exercise-section" aria-labelledby="ex3-heading">
+            <div class="exercise-header">
+              <div>
+                <span class="section-kicker">Exercise 3 · 10 Sentences · Sentence Transformation</span>
+                <h3 id="ex3-heading">Reporting Verbs &amp; Infinitive Structures</h3>
+                <p style="margin-top: var(--space-xs); font-size: 0.96875rem;">Complete the passive report using <em>It is + V3</em> or <em>is/are + V3 + infinitive</em> (simple, continuous, or perfect).</p>
+              </div>
+              <div class="exercise-meta">
+                <span class="score-pill" id="score-ex3">0 / 10</span>
+                <button type="button" class="button button--secondary button--compact" onclick="resetSection('ex3', this)">Reset Section</button>
+              </div>
+            </div>
+            <div class="question-list" id="container-ex3"></div>
+          </section>
+
+          <!-- EXERCISE 4 -->
+          <section id="ex-4" class="exercise-section" aria-labelledby="ex4-heading">
+            <div class="exercise-header">
+              <div>
+                <span class="section-kicker">Exercise 4 · 10 Sentences · Error Correction</span>
+                <h3 id="ex4-heading">Spot &amp; Fix the Passive Mistake</h3>
+                <p style="margin-top: var(--space-xs); font-size: 0.96875rem;">Each sentence has one highlighted error. Type the exact corrected replacement for the highlighted phrase.</p>
+              </div>
+              <div class="exercise-meta">
+                <span class="score-pill" id="score-ex4">0 / 10</span>
+                <button type="button" class="button button--secondary button--compact" onclick="resetSection('ex4', this)">Reset Section</button>
+              </div>
+            </div>
+            <div class="question-list" id="container-ex4"></div>
+          </section>
+        </div>
+      </main>
+
+      <!-- QUICK REFERENCE RAIL -->
+      <aside class="reference-rail" aria-label="Quick grammar reference">
+        <div>
+          <span class="section-kicker">Quick Reference</span>
+          <h3>Grammar Checklist</h3>
+        </div>
+
+        <ul class="rail-list">
+          <li>
+            <strong>1. Golden Rule</strong><br>
+            Always pair a form of <em>to be</em> (matching the subject &amp; tense) with a <strong>past participle (V3)</strong>.
+          </li>
+          <li>
+            <strong>2. Negative Contractions</strong><br>
+            Both <em>isn’t / wasn’t / haven’t been</em> and <em>is not / was not / have not been</em> are equally valid.
+          </li>
+          <li>
+            <strong>3. Intransitive Verbs</strong><br>
+            <em>Arrive, happen, occur, appear, sleep,</em> and <em>die</em> never take an object, so they have <strong>no passive form</strong>.
+          </li>
+          <li>
+            <strong>4. State Verbs &amp; <em>get</em></strong><br>
+            Never use <em>get</em> with <em>know, believe, own, love, hate, understand,</em> or <em>respect</em>. Use <em>be</em> instead.
+          </li>
+          <li>
+            <strong>5. Past Reporting Actions</strong><br>
+            If the reported event happened earlier than the report, use <strong>to have + V3</strong> (active) or <strong>to have been + V3</strong> (passive).
+          </li>
+        </ul>
+
+        <div style="border-top: 2px solid var(--primary); padding-top: var(--space-md);">
+          <span class="section-kicker" style="color: var(--primary);">Irregular Past Participles (V3)</span>
+          <div class="v3-grid" role="table" aria-label="Common irregular verbs">
+            <div class="v3-head">Base</div>
+            <div class="v3-head">Past</div>
+            <div class="v3-head">V3</div>
+
+            <div>break</div><div>broke</div><div><strong>broken</strong></div>
+            <div>build</div><div>built</div><div><strong>built</strong></div>
+            <div>choose</div><div>chose</div><div><strong>chosen</strong></div>
+            <div>find</div><div>found</div><div><strong>found</strong></div>
+            <div>leave</div><div>left</div><div><strong>left</strong></div>
+            <div>lose</div><div>lost</div><div><strong>lost</strong></div>
+            <div>see</div><div>saw</div><div><strong>seen</strong></div>
+            <div>sell</div><div>sold</div><div><strong>sold</strong></div>
+            <div>steal</div><div>stole</div><div><strong>stolen</strong></div>
+            <div>write</div><div>wrote</div><div><strong>written</strong></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="site-footer">
+      <span>Intermediate ESL/EFL Passive Voice Study Guide · Royal Blue &amp; Red School Edition</span>
+      <span>Progress saves automatically inside this notebook session.</span>
+    </footer>
+  </div>
+
+  <api-shim></api-shim>
+
+  <script>
+    /* ================================================================
+       1. INTERACTIVE LAB DATA (Sections 01 & 04)
+       ================================================================ */
+    const LAB_TENSES = {
+      present_simple: {
+        label: `Present Simple`,
+        activePos: { subj: `Millions of people`, verb: `speak`, obj: `English`, rest: `worldwide.` },
+        passivePos: { subj: `English`, verb: `is spoken`, agent: `by millions of people`, rest: `worldwide.` },
+        activeNeg: { subj: `People`, verb: `don't speak`, obj: `Latin`, rest: `in daily conversation.` },
+        passiveNeg: { subj: `Latin`, verb: `isn't spoken`, agent: `(agent omitted)`, rest: `in daily conversation.` },
+        note: `Use am / is / are (+ not) + past participle.`
+      },
+      past_simple: {
+        label: `Past Simple`,
+        activePos: { subj: `Gutenberg`, verb: `invented`, obj: `the printing press`, rest: `around 1440.` },
+        passivePos: { subj: `The printing press`, verb: `was invented`, agent: `by Gutenberg`, rest: `around 1440.` },
+        activeNeg: { subj: `They`, verb: `didn't invite`, obj: `Lena`, rest: `to the conference.` },
+        passiveNeg: { subj: `Lena`, verb: `wasn't invited`, agent: `(agent omitted)`, rest: `to the conference.` },
+        note: `Use was / were (+ not) + past participle.`
+      },
+      present_cont: {
+        label: `Present Continuous`,
+        activePos: { subj: `Engineers`, verb: `are testing`, obj: `the bridge`, rest: `right now.` },
+        passivePos: { subj: `The bridge`, verb: `is being tested`, agent: `by engineers`, rest: `right now.` },
+        activeNeg: { subj: `Workers`, verb: `aren't cleaning`, obj: `the hall`, rest: `at the moment.` },
+        passiveNeg: { subj: `The hall`, verb: `isn't being cleaned`, agent: `(agent omitted)`, rest: `at the moment.` },
+        note: `Always include "being" between am/is/are and the past participle.`
+      },
+      present_perf: {
+        label: `Present Perfect`,
+        activePos: { subj: `The committee`, verb: `has approved`, obj: `the new budget`, rest: `already.` },
+        passivePos: { subj: `The new budget`, verb: `has been approved`, agent: `by the committee`, rest: `already.` },
+        activeNeg: { subj: `They`, verb: `haven't fixed`, obj: `the elevators`, rest: `yet.` },
+        passiveNeg: { subj: `The elevators`, verb: `haven't been fixed`, agent: `(agent omitted)`, rest: `yet.` },
+        note: `Always include "been" after has / have (+ not).`
+      },
+      future_will: {
+        label: `Future (will)`,
+        activePos: { subj: `The school`, verb: `will announce`, obj: `the winners`, rest: `tomorrow.` },
+        passivePos: { subj: `The winners`, verb: `will be announced`, agent: `by the school`, rest: `tomorrow.` },
+        activeNeg: { subj: `The bank`, verb: `won't open`, obj: `the new branch`, rest: `until June.` },
+        passiveNeg: { subj: `The new branch`, verb: `won't be opened`, agent: `(agent omitted)`, rest: `until June.` },
+        note: `Use will (+ not) / won't + be + past participle.`
+      },
+      modal: {
+        label: `Modal (must)`,
+        activePos: { subj: `Passengers`, verb: `must wear`, obj: `seatbelts`, rest: `during takeoff.` },
+        passivePos: { subj: `Seatbelts`, verb: `must be worn`, agent: `(by passengers)`, rest: `during takeoff.` },
+        activeNeg: { subj: `Visitors`, verb: `must not touch`, obj: `the paintings`, rest: `in the gallery.` },
+        passiveNeg: { subj: `The paintings`, verb: `must not be touched`, agent: `(agent omitted)`, rest: `in the gallery.` },
+        note: `After any modal (must, should, can, might), use "be" + past participle.`
+      }
+    };
+
+    const REPORT_CASES = {
+      present: {
+        title: `Present State or Habit`,
+        active: `People say that the mayor speaks four languages.`,
+        impersonal: `It is said that the mayor speaks four languages.`,
+        personal: `The mayor is said to speak four languages.`,
+        why: `Because "speaks" happens in the present (same time as "say"), use the simple infinitive: to + base verb ("to speak").`
+      },
+      ongoing: {
+        title: `Action Happening Right Now`,
+        active: `Reporters think that the museum is planning a major tour.`,
+        impersonal: `It is thought that the museum is planning a major tour.`,
+        personal: `The museum is thought to be planning a major tour.`,
+        why: `Because "is planning" is an ongoing continuous action, use the continuous infinitive: to be + -ing ("to be planning").`
+      },
+      past_active: {
+        title: `Past Action (Active)`,
+        active: `Police believe that the suspect left the country last night.`,
+        impersonal: `It is believed that the suspect left the country last night.`,
+        personal: `The suspect is believed to have left the country last night.`,
+        why: `Because "left" happened earlier in the past ("last night"), shift to the perfect infinitive: to have + V3 ("to have left").`
+      },
+      past_passive: {
+        title: `Past Action (Passive)`,
+        active: `Experts know that the manuscript was written in the 14th century.`,
+        impersonal: `It is known that the manuscript was written in the 14th century.`,
+        personal: `The manuscript is known to have been written in the 14th century.`,
+        why: `Because the past event itself is passive ("was written"), use the passive perfect infinitive: to have been + V3 ("to have been written").`
+      }
+    };
+
+    let currentLabTense = `present_simple`;
+    let labIsNegative = false;
+
+    /* ================================================================
+       2. EXERCISE DATASETS (4 Sections x 10 Sentences = 40 Items)
+       ================================================================ */
+    const EXERCISES = {
+      ex1: {
+        type: `fill`,
+        items: [
+          {
+            id: `ex1-1`,
+            source: `Active: "Millions of tourists visit Paris every year."`,
+            before: `Paris`,
+            after: `by millions of tourists every year.`,
+            answers: [`is visited`],
+            hint: `Use the present simple of "to be" (for singular "Paris") + the past participle of "visit".`,
+            explanation: `Present simple active ("visit") becomes "is/are + past participle". Since "Paris" is singular, use "is visited".`
+          },
+          {
+            id: `ex1-2`,
+            source: `Active: "Someone broke the classroom window last night."`,
+            before: `The classroom window`,
+            after: `last night.`,
+            answers: [`was broken`],
+            hint: `Notice the past time marker "last night". What is the irregular past participle (V3) of "break"?`,
+            explanation: `Past simple active ("broke") becomes "was/were + past participle". The past participle of "break" is "broken".`
+          },
+          {
+            id: `ex1-3`,
+            source: `Active: "The mechanic is repairing my car right now."`,
+            before: `My car`,
+            after: `right now.`,
+            answers: [`is being repaired`],
+            hint: `This is present continuous. Remember to include "being" between "is" and the past participle.`,
+            explanation: `Present continuous passive follows the pattern "am/is/are + being + past participle": "is being repaired".`
+          },
+          {
+            id: `ex1-4`,
+            source: `Active: "They haven't announced the exam results yet."`,
+            before: `The exam results`,
+            after: `yet.`,
+            answers: [`haven't been announced`, `have not been announced`],
+            hint: `Use the negative present perfect passive with plural "results". Don't forget "been" before "announced".`,
+            explanation: `Present perfect negative passive uses "haven't / have not + been + past participle". Plural "results" takes "haven't been announced".`
+          },
+          {
+            id: `ex1-5`,
+            source: `Active: "The chef was preparing dinner when the power went out."`,
+            before: `Dinner`,
+            after: `when the power went out.`,
+            answers: [`was being prepared`],
+            hint: `Use the past continuous passive: "was/were + being + past participle".`,
+            explanation: `Past continuous active ("was preparing") transforms into "was being prepared".`
+          },
+          {
+            id: `ex1-6`,
+            source: `Active: "Students must submit all essays by Friday."`,
+            before: `All essays`,
+            after: `by Friday.`,
+            answers: [`must be submitted`],
+            hint: `After a modal verb like "must", always use the base form "be" + past participle. Watch the double "t" in "submitted".`,
+            explanation: `Modal passive structure is "modal + be + past participle": "must be submitted".`
+          },
+          {
+            id: `ex1-7`,
+            source: `Active: "The company will launch the new app next month."`,
+            before: `The new app`,
+            after: `next month.`,
+            answers: [`will be launched`],
+            hint: `Future simple passive uses "will + be + past participle".`,
+            explanation: `Future "will launch" becomes "will be launched".`
+          },
+          {
+            id: `ex1-8`,
+            source: `Active: "They didn't invite Marco to the meeting."`,
+            before: `Marco`,
+            after: `to the meeting.`,
+            answers: [`wasn't invited`, `was not invited`],
+            hint: `The active verb "didn't invite" is negative past simple. Use the negative past form of "to be" + past participle.`,
+            explanation: `Past simple negative active ("didn't invite") becomes "wasn't / was not + past participle": "wasn't invited".`
+          },
+          {
+            id: `ex1-9`,
+            source: `Active: "Someone had sold all the tickets before we arrived."`,
+            before: `All the tickets`,
+            after: `before we arrived.`,
+            answers: [`had been sold`],
+            hint: `This is past perfect ("had sold"). Insert "been" before the irregular past participle of "sell".`,
+            explanation: `Past perfect passive uses "had been + past participle". The past participle of "sell" is "sold".`
+          },
+          {
+            id: `ex1-10`,
+            source: `Active: "The city is going to build a new library downtown."`,
+            before: `A new library`,
+            after: `downtown.`,
+            answers: [`is going to be built`],
+            hint: `With "be going to", use "is going to be + past participle". What is the irregular V3 of "build"?`,
+            explanation: `"Be going to" passive uses "am/is/are going to be + past participle". "Build" becomes "built".`
+          }
+        ]
+      },
+
+      ex2: {
+        type: `choice`,
+        items: [
+          {
+            id: `ex2-1`,
+            source: `Context: Casual conversation with a friend`,
+            before: `While I was at the café, my backpack`,
+            after: `.`,
+            options: [`got stolen`, `got knew`, `stole`],
+            correct: `got stolen`,
+            hint: `This is an unexpected mishap in informal speech, and "steal" is an action verb.`,
+            explanation: `We naturally use "get + past participle" in everyday speech for bad surprises and accidents like "got stolen".`
+          },
+          {
+            id: `ex2-2`,
+            source: `Context: Describing a colleague's reputation`,
+            before: `She`,
+            after: `by everyone in the department for her honesty.`,
+            options: [`gets respected`, `is respected`, `got been respected`],
+            correct: `is respected`,
+            hint: `"Respect" describes a steady feeling or state, not a sudden event. Remember: exclude state verbs with "get".`,
+            explanation: `We cannot use "get" with state verbs like "respect", "know", "love", or "believe". Use "be + past participle": "is respected".`
+          },
+          {
+            id: `ex2-3`,
+            source: `Context: Asking about a sports injury`,
+            before: `How did your brother`,
+            after: `during the football match?`,
+            options: [`get hurt`, `got hurt`, `be hurt`],
+            correct: `get hurt`,
+            hint: `Look at the auxiliary "did" at the start of the question. Which verb form follows "did"?`,
+            explanation: `Questions with the get-passive require "do/does/did + subject + base form get + V3": "How did your brother get hurt?"`
+          },
+          {
+            id: `ex2-4`,
+            source: `Context: Ownership over time`,
+            before: `This old house`,
+            after: `by a local family for over a century.`,
+            options: [`has got owned`, `has been owned`, `got owned`],
+            correct: `has been owned`,
+            hint: `"Own" is a state verb (possession), not a dynamic action or mishap.`,
+            explanation: `Because "own" is a state verb, it cannot form a get-passive. Use the standard passive: "has been owned".`
+          },
+          {
+            id: `ex2-5`,
+            source: `Context: Warning a friend`,
+            before: `Be careful on the icy steps or you might`,
+            after: `.`,
+            options: [`get injured`, `get understood`, `got injured`],
+            correct: `get injured`,
+            hint: `After the modal "might", use the base form for a physical accident.`,
+            explanation: `"Might get injured" uses "get" naturally for a possible accident or physical mishap.`
+          },
+          {
+            id: `ex2-6`,
+            source: `Context: Informal spoken story`,
+            before: `I`,
+            after: `to the party, so I stayed home and watched a movie.`,
+            options: [`didn't get invited`, `wasn't get invited`, `didn't got invited`],
+            correct: `didn't get invited`,
+            hint: `Negative past sentences with "get" need "didn't" + the base form "get".`,
+            explanation: `Unlike "wasn't invited", the get-passive requires do-support in negatives: "didn't get invited".`
+          },
+          {
+            id: `ex2-7`,
+            source: `Context: Mental state / knowledge`,
+            before: `The exact reason for the delay`,
+            after: `by anyone yet.`,
+            options: [`hasn't got known`, `isn't known`, `didn't get known`],
+            correct: `isn't known`,
+            hint: `"Know" is a mental state verb. Which passive auxiliary is required for state verbs?`,
+            explanation: `Because "know" is a state verb, "get known" is incorrect here. Use "isn't known".`
+          },
+          {
+            id: `ex2-8`,
+            source: `Context: Everyday speech about a parking mishap`,
+            before: `Because he parked in a bus lane, his car`,
+            after: `.`,
+            options: [`got towed`, `got believed`, `was towing`],
+            correct: `got towed`,
+            hint: `This is an unpleasant, sudden event that happened to the car.`,
+            explanation: `"Got towed" is a classic informal get-passive for an unfortunate event.`
+          },
+          {
+            id: `ex2-9`,
+            source: `Context: Formal legal contract`,
+            before: `In the official contract, it states that all disputes`,
+            after: `by an independent panel.`,
+            options: [`get settled`, `are settled`, `got settled`],
+            correct: `are settled`,
+            hint: `Notice the formal register ("official contract"). Is "get" appropriate in legal documents?`,
+            explanation: `Get-passives are too informal for legal or bureaucratic texts; use the standard be-passive: "are settled".`
+          },
+          {
+            id: `ex2-10`,
+            source: `Context: Travel story`,
+            before: `We took a shortcut through the forest and unfortunately`,
+            after: `.`,
+            options: [`got lost`, `got hated`, `were losing`],
+            correct: `got lost`,
+            hint: `Which common "get + past participle" expression describes a travel mishap?`,
+            explanation: `"Got lost" is one of the most frequent informal get-passives for an accidental situation.`
+          }
+        ]
+      },
+
+      ex3: {
+        type: `fill`,
+        items: [
+          {
+            id: `ex3-1`,
+            source: `People say that the director lives in a quiet village.`,
+            before: `The director`,
+            after: `in a quiet village.`,
+            answers: [`is said to live`],
+            hint: `Both "say" and "lives" are in the present. Use "is said + to-infinitive".`,
+            explanation: `Present personal passive: "is said to live" (simple infinitive for a present state/habit).`
+          },
+          {
+            id: `ex3-2`,
+            source: `Journalists think that the museum is planning a major exhibition.`,
+            before: `The museum`,
+            after: `a major exhibition.`,
+            answers: [`is thought to be planning`],
+            hint: `The action "is planning" is happening right now (continuous). Use "is thought + to be + -ing".`,
+            explanation: `Ongoing actions at the time of reporting use the continuous infinitive: "is thought to be planning".`
+          },
+          {
+            id: `ex3-3`,
+            source: `Police believe that the thief escaped through a back window.`,
+            before: `The thief`,
+            after: `through a back window.`,
+            answers: [`is believed to have escaped`],
+            hint: `"Escaped" happened in the past, before the present belief. Use a perfect infinitive ("to have + V3").`,
+            explanation: `When the reported action happened earlier than the reporting verb, use the perfect infinitive: "is believed to have escaped".`
+          },
+          {
+            id: `ex3-4`,
+            source: `Experts expect that fuel prices will rise again next winter.`,
+            before: ``,
+            after: `that fuel prices will rise again next winter.`,
+            answers: [`It is expected`, `It's expected`],
+            hint: `Use the impersonal passive structure starting with "It..." before "that".`,
+            explanation: `Impersonal passive with "It": "It is expected that..." introduces a general expectation without naming a source.`
+          },
+          {
+            id: `ex3-5`,
+            source: `Historians know that the ancient temple was destroyed by an earthquake.`,
+            before: `The ancient temple`,
+            after: `by an earthquake.`,
+            answers: [`is known to have been destroyed`],
+            hint: `This is a past passive action ("was destroyed"). Use the passive perfect infinitive: "is known to have been + V3".`,
+            explanation: `A past passive event reported in the present uses "is known to have been destroyed".`
+          },
+          {
+            id: `ex3-6`,
+            source: `People report that the singer has donated millions to local schools.`,
+            before: `The singer`,
+            after: `millions to local schools.`,
+            answers: [`is reported to have donated`],
+            hint: `"Has donated" is an earlier completed action. Use "is reported + to have + past participle".`,
+            explanation: `Both past simple and present perfect actions transform into the perfect infinitive: "is reported to have donated".`
+          },
+          {
+            id: `ex3-7`,
+            source: `Rumors claim that the athlete is training in secret.`,
+            before: `The athlete`,
+            after: `in secret.`,
+            answers: [`is claimed to be training`],
+            hint: `Use "is claimed" + the continuous infinitive ("to be + -ing") because the training is ongoing.`,
+            explanation: `Ongoing actions use the continuous infinitive: "is claimed to be training".`
+          },
+          {
+            id: `ex3-8`,
+            source: `Scientists consider that this medicine is completely safe.`,
+            before: `This medicine`,
+            after: `completely safe.`,
+            answers: [`is considered to be`],
+            hint: `After "is considered", use "to" + the base form of "is".`,
+            explanation: `A present state ("is safe") becomes "is considered to be".`
+          },
+          {
+            id: `ex3-9`,
+            source: `Witnesses say that two men were seen near the gate at midnight.`,
+            before: `Two men`,
+            after: `near the gate at midnight.`,
+            answers: [`are said to have been seen`],
+            hint: `Notice plural "Two men" + past passive "were seen". Combine plural "are said" with "to have been + V3".`,
+            explanation: `Plural subject takes "are said", and the earlier passive event takes "to have been seen".`
+          },
+          {
+            id: `ex3-10`,
+            source: `Everyone knows that the company lost money last year.`,
+            before: ``,
+            after: `that the company lost money last year.`,
+            answers: [`It is known`, `It's known`],
+            hint: `Use the impersonal reporting structure beginning with "It...".`,
+            explanation: `Impersonal passive: "It is known that..." reports a widely accepted past fact.`
+          }
+        ]
+      },
+
+      ex4: {
+        type: `fix`,
+        items: [
+          {
+            id: `ex4-1`,
+            before: `The package`,
+            faulty: `was arrived`,
+            after: `at our office this morning.`,
+            answers: [`arrived`],
+            hint: `"Arrive" is an intransitive verb—it never takes an object, so it cannot be made passive!`,
+            explanation: `Intransitive verbs like "arrive", "happen", "appear", and "die" have no passive voice. Use the active form "arrived".`
+          },
+          {
+            id: `ex4-2`,
+            before: `His secret`,
+            faulty: `got known`,
+            after: `by the whole school within an hour.`,
+            answers: [`was known`, `became known`],
+            hint: `"Know" is a state verb, so "get" cannot be used here. Replace it with the standard "be"-passive.`,
+            explanation: `State verbs cannot form a get-passive. Use "was known" (or "became known").`
+          },
+          {
+            id: `ex4-3`,
+            before: `A terrible accident`,
+            faulty: `was happened`,
+            after: `on the highway last night.`,
+            answers: [`happened`],
+            hint: `Like "arrive", "happen" never takes an object. Can it be used in the passive?`,
+            explanation: `"Happen" is intransitive and can never be passive ("was happened" is a common mistake). Use "happened".`
+          },
+          {
+            id: `ex4-4`,
+            before: `The new bridge`,
+            faulty: `is building`,
+            after: `across the river right now.`,
+            answers: [`is being built`],
+            hint: `A bridge cannot build itself! Use the present continuous passive ("is being + past participle").`,
+            explanation: `The subject "The new bridge" receives the action, so we need present continuous passive: "is being built".`
+          },
+          {
+            id: `ex4-5`,
+            before: `This book`,
+            faulty: `was wrote`,
+            after: `by a famous Canadian author.`,
+            answers: [`was written`],
+            hint: `"Wrote" is the past simple form, not the past participle (V3) of "write".`,
+            explanation: `The passive always requires the past participle (V3), never the past simple: "was written".`
+          },
+          {
+            id: `ex4-6`,
+            before: `The suspect is believed`,
+            faulty: `to leave`,
+            after: `the country two days ago.`,
+            answers: [`to have left`],
+            hint: `Look at "two days ago"—the action happened in the past, before the present belief. Use a perfect infinitive.`,
+            explanation: `Past actions after reporting verbs require the perfect infinitive ("to have + V3"): "to have left".`
+          },
+          {
+            id: `ex4-7`,
+            before: `The missing keys`,
+            faulty: `haven't found`,
+            after: `anywhere in the building.`,
+            answers: [`haven't been found`, `have not been found`],
+            hint: `The sentence is missing the passive auxiliary "been" between "haven't" and "found".`,
+            explanation: `Present perfect passive must include "been": "haven't been found".`
+          },
+          {
+            id: `ex4-8`,
+            before: `All visitors must`,
+            faulty: `be sign`,
+            after: `the guestbook at the front desk.`,
+            answers: [`sign`],
+            hint: `Who performs the action "sign"? "All visitors" do! So this sentence must be active, not passive.`,
+            explanation: `Because "all visitors" are the ones signing the guestbook (active agent), use the active modal verb "sign".`
+          },
+          {
+            id: `ex4-9`,
+            before: `She`,
+            faulty: `wasn't get`,
+            after: `chosen for the national team.`,
+            answers: [`didn't get`, `did not get`, `wasn't`, `was not`],
+            hint: `When forming a negative with the "get"-passive, use do-support ("didn't") instead of "wasn't".`,
+            explanation: `The get-passive uses "didn't get + past participle" (or use the standard passive "wasn't chosen").`
+          },
+          {
+            id: `ex4-10`,
+            before: `The stolen watch is thought`,
+            faulty: `to have sold`,
+            after: `at an auction in 2018.`,
+            answers: [`to have been sold`],
+            hint: `A watch cannot sell itself! Make the perfect infinitive passive by adding "been".`,
+            explanation: `Because the watch was sold by someone else in the past, use the passive perfect infinitive: "to have been sold".`
+          }
+        ]
+      }
+    };
+
+    /* ================================================================
+       3. APP STATE & NORMALIZATION HELPERS
+       ================================================================ */
+    let appState = {
+      progress: {} // { [itemId]: { attempts: number, status: 'unanswered'|'hint'|'correct'|'revealed', userValue: string, lastWrongInput: string, wrongChoices: string[] } }
+    };
+
+    const CONTRACTIONS_MAP = [
+      [/\bisn't\b/g, `is not`],
+      [/\baren't\b/g, `are not`],
+      [/\bwasn't\b/g, `was not`],
+      [/\bweren't\b/g, `were not`],
+      [/\bhasn't\b/g, `has not`],
+      [/\bhaven't\b/g, `have not`],
+      [/\bhadn't\b/g, `had not`],
+      [/\bwon't\b/g, `will not`],
+      [/\bcan't\b/g, `cannot`],
+      [/\bcan not\b/g, `cannot`],
+      [/\bcouldn't\b/g, `could not`],
+      [/\bshouldn't\b/g, `should not`],
+      [/\bwouldn't\b/g, `would not`],
+      [/\bmustn't\b/g, `must not`],
+      [/\bdidn't\b/g, `did not`],
+      [/\bdoesn't\b/g, `does not`],
+      [/\bdon't\b/g, `do not`],
+      [/\bit's\b/g, `it is`],
+      [/\bthey're\b/g, `they are`],
+      [/\bwe're\b/g, `we are`],
+      [/\byou're\b/g, `you are`]
+    ];
+
+    function normalizeAnswer(raw) {
+      if (typeof raw !== `string`) return ``;
+      let s = raw
+        .replace(/[\u2018\u2019]/g, `'`)
+        .trim()
+        .toLowerCase()
+        .replace(/[.!?]+$/g, ``)
+        .replace(/\s+/g, ` `)
+        .trim();
+      for (let i = 0; i < CONTRACTIONS_MAP.length; i++) {
+        s = s.replace(CONTRACTIONS_MAP[i][0], CONTRACTIONS_MAP[i][1]);
+      }
+      return s.replace(/\s+/g, ` `).trim();
+    }
+
+    function isMatch(userInput, validAnswers) {
+      const normUser = normalizeAnswer(userInput);
+      if (!normUser) return false;
+      for (let i = 0; i < validAnswers.length; i++) {
+        if (normUser === normalizeAnswer(validAnswers[i])) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, `&amp;`)
+        .replace(/</g, `&lt;`)
+        .replace(/>/g, `&gt;`)
+        .replace(/"/g, `&quot;`);
+    }
+
+    async function saveProgress() {
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+          await window.notebookAppApi.setAppState({ progress: appState.progress });
+        }
+      } catch (err) {
+        // Safe fallback if shim unavailable during static test
+      }
+    }
+
+    /* ================================================================
+       4. INTERACTIVE LAB RENDERERS
+       ================================================================ */
+    function renderLabStage() {
+      const stage = document.getElementById(`lab-stage`);
+      if (!stage) return;
+      const t = LAB_TENSES[currentLabTense];
+      if (!t) return;
+      const act = labIsNegative ? t.activeNeg : t.activePos;
+      const pas = labIsNegative ? t.passiveNeg : t.passivePos;
+
+      stage.innerHTML = `
+        <div class="voice-row">
+          <span class="voice-badge">Active Voice (${escapeHtml(t.label)} · ${labIsNegative ? `Negative` : `Positive`})</span>
+          <div class="sentence-display">
+            <span class="part-box part-object">${escapeHtml(act.subj)}</span>
+            <span class="part-box part-verb">${escapeHtml(act.verb)}</span>
+            <span class="part-box part-subject">${escapeHtml(act.obj)}</span>
+            <span class="part-rest">${escapeHtml(act.rest)}</span>
+          </div>
+        </div>
+        <div class="voice-row" style="border-top: 1px solid var(--outline-variant); padding-top: var(--space-sm);">
+          <span class="voice-badge" style="color: var(--primary);">Passive Voice Transformation</span>
+          <div class="sentence-display">
+            <span class="part-box part-subject">${escapeHtml(pas.subj)}</span>
+            <span class="part-box part-verb">${escapeHtml(pas.verb)}</span>
+            <span class="part-box part-object">${escapeHtml(pas.agent)}</span>
+            <span class="part-rest">${escapeHtml(pas.rest)}</span>
+          </div>
+        </div>
+        <p style="font-size: 0.9375rem; color: var(--on-surface-variant); margin: 0;">
+          <strong>Rule:</strong> ${escapeHtml(t.note)}
+        </p>
+      `;
+    }
+
+    function selectLabTense(tenseKey, btnEl) {
+      if (!LAB_TENSES[tenseKey]) return;
+      currentLabTense = tenseKey;
+      const parent = btnEl ? btnEl.parentElement : null;
+      if (parent) {
+        const btns = parent.querySelectorAll(`.tab-btn`);
+        btns.forEach(function (b) { b.setAttribute(`aria-pressed`, `false`); });
+      }
+      if (btnEl) btnEl.setAttribute(`aria-pressed`, `true`);
+      renderLabStage();
+    }
+
+    function togglePolarity() {
+      labIsNegative = !labIsNegative;
+      const btn = document.getElementById(`neg-toggle-btn`);
+      if (btn) {
+        btn.textContent = labIsNegative ? `Form: Negative` : `Form: Positive`;
+      }
+      renderLabStage();
+    }
+
+    function selectReportCase(caseKey, btnEl) {
+      const stage = document.getElementById(`report-stage`);
+      const data = REPORT_CASES[caseKey];
+      if (!stage || !data) return;
+
+      const parent = btnEl ? btnEl.parentElement : null;
+      if (parent) {
+        const btns = parent.querySelectorAll(`.tab-btn`);
+        btns.forEach(function (b) { b.setAttribute(`aria-pressed`, `false`); });
+      }
+      if (btnEl) btnEl.setAttribute(`aria-pressed`, `true`);
+
+      stage.innerHTML = `
+        <div class="voice-row">
+          <span class="voice-badge">${escapeHtml(data.title)} · Active Original</span>
+          <div style="font-size: 1.0625rem;">${escapeHtml(data.active)}</div>
+        </div>
+        <div class="voice-row" style="border-top: 1px solid var(--outline-variant); padding-top: var(--space-sm);">
+          <span class="voice-badge" style="color: var(--primary);">Option 1 · Impersonal “It”</span>
+          <div style="font-size: 1.0625rem; font-weight: 600;">${escapeHtml(data.impersonal)}</div>
+        </div>
+        <div class="voice-row" style="border-top: 1px solid var(--outline-variant); padding-top: var(--space-sm);">
+          <span class="voice-badge" style="color: var(--brand-red);">Option 2 · Personal Subject + Infinitive</span>
+          <div style="font-size: 1.0625rem; font-weight: 700; color: var(--on-surface);">${escapeHtml(data.personal)}</div>
+        </div>
+        <p style="font-size: 0.9375rem; color: var(--on-surface-variant); margin: 0;">
+          <strong>Why this works:</strong> ${escapeHtml(data.why)}
+        </p>
+      `;
+    }
+
+    function toggleWhyReveal(id, btn) {
+      const box = document.getElementById(id);
+      if (!box || !btn) return;
+      const isOpen = box.classList.toggle(`is-open`);
+      btn.setAttribute(`aria-expanded`, isOpen ? `true` : `false`);
+      btn.textContent = isOpen ? `Hide reason` : `Show reason`;
+    }
+
+    /* ================================================================
+       5. RENDERING & INTERACTION FOR ALL 40 PRACTICE ITEMS
+       ================================================================ */
+    function getItemState(itemId) {
+      if (!appState.progress[itemId]) {
+        appState.progress[itemId] = {
+          attempts: 0,
+          status: `unanswered`,
+          userValue: ``,
+          lastWrongInput: ``,
+          wrongChoices: []
+        };
+      }
+      return appState.progress[itemId];
+    }
+
+    function findItem(sectionKey, itemId) {
+      const sec = EXERCISES[sectionKey];
+      if (!sec) return null;
+      for (let i = 0; i < sec.items.length; i++) {
+        if (sec.items[i].id === itemId) return sec.items[i];
+      }
+      return null;
+    }
+
+    function renderExerciseSection(sectionKey) {
+      const container = document.getElementById(`container-` + sectionKey);
+      const sec = EXERCISES[sectionKey];
+      if (!container || !sec) return;
+
+      let html = ``;
+      for (let idx = 0; idx < sec.items.length; idx++) {
+        const item = sec.items[idx];
+        const st = getItemState(item.id);
+        const numLabel = (idx + 1 < 10 ? `0` : ``) + (idx + 1);
+        const isLocked = st.status === `correct` || st.status === `revealed`;
+
+        let cardClass = `question-card`;
+        let badgeClass = `q-attempt-badge`;
+        let badgeText = `2 attempts remaining`;
+
+        if (st.status === `hint`) {
+          cardClass += ` state-hint`;
+          badgeClass += ` is-hint`;
+          badgeText = `1 attempt remaining`;
+        } else if (st.status === `correct`) {
+          cardClass += ` state-correct`;
+          badgeClass += ` is-correct`;
+          badgeText = st.attempts === 1 ? `Correct (1st try)` : `Correct (2nd try)`;
+        } else if (st.status === `revealed`) {
+          cardClass += ` state-revealed`;
+          badgeClass += ` is-revealed`;
+          badgeText = `Answer revealed`;
+        }
+
+        let promptHtml = ``;
+        let controlsHtml = ``;
+
+        if (sec.type === `fill`) {
+          const displayBlank = isLocked
+            ? (st.status === `correct` ? st.userValue : item.answers[0])
+            : `________`;
+          promptHtml = `
+            <div class="q-source-sentence">${escapeHtml(item.source)}</div>
+            <div class="q-target-prompt">
+              ${item.before ? escapeHtml(item.before) + ` ` : ``}<span class="blank-marker" id="blank-${item.id}">${escapeHtml(displayBlank)}</span> ${escapeHtml(item.after)}
+            </div>
+          `;
+          const inputId = `input-${item.id}`;
+          controlsHtml = `
+            <div class="answer-controls">
+              <div class="field-group">
+                <label class="field-label" for="${inputId}">Your answer</label>
+                <input
+                  type="text"
+                  id="${inputId}"
+                  class="text-input"
+                  value="${escapeHtml(st.userValue)}"
+                  autocomplete="off"
+                  spellcheck="false"
+                  ${isLocked ? `disabled` : ``}
+                  onkeydown="handleInputKeydown(event, '${sectionKey}', '${item.id}')"
+                >
+              </div>
+              <button
+                type="button"
+                id="btn-${item.id}"
+                class="button"
+                ${isLocked ? `disabled` : ``}
+                onclick="checkTextAnswer('${sectionKey}', '${item.id}')"
+              >${st.status === `hint` ? `Check 2nd Attempt` : `Check Answer`}</button>
+            </div>
+          `;
+        } else if (sec.type === `fix`) {
+          const fixedWord = isLocked
+            ? (st.status === `correct` ? st.userValue : item.answers[0])
+            : item.faulty;
+          promptHtml = `
+            <div class="q-target-prompt">
+              ${escapeHtml(item.before)}
+              <span class="${isLocked ? `blank-marker` : `error-highlight`}" id="blank-${item.id}">${escapeHtml(fixedWord)}</span>
+              ${escapeHtml(item.after)}
+            </div>
+          `;
+          const inputId = `input-${item.id}`;
+          controlsHtml = `
+            <div class="answer-controls">
+              <div class="field-group">
+                <label class="field-label" for="${inputId}">Corrected replacement for “${escapeHtml(item.faulty)}”</label>
+                <input
+                  type="text"
+                  id="${inputId}"
+                  class="text-input"
+                  value="${escapeHtml(st.userValue)}"
+                  autocomplete="off"
+                  spellcheck="false"
+                  ${isLocked ? `disabled` : ``}
+                  onkeydown="handleInputKeydown(event, '${sectionKey}', '${item.id}')"
+                >
+              </div>
+              <button
+                type="button"
+                id="btn-${item.id}"
+                class="button"
+                ${isLocked ? `disabled` : ``}
+                onclick="checkTextAnswer('${sectionKey}', '${item.id}')"
+              >${st.status === `hint` ? `Check 2nd Attempt` : `Check Correction`}</button>
+            </div>
+          `;
+        } else if (sec.type === `choice`) {
+          const displayBlank = isLocked ? item.correct : `________`;
+          promptHtml = `
+            <div class="q-source-sentence">${escapeHtml(item.source)}</div>
+            <div class="q-target-prompt">
+              ${escapeHtml(item.before)} <span class="blank-marker" id="blank-${item.id}">${escapeHtml(displayBlank)}</span>${item.after === `.` || item.after === `?` ? escapeHtml(item.after) : ` ` + escapeHtml(item.after)}
+            </div>
+          `;
+
+          let optionsHtml = ``;
+          for (let o = 0; o < item.options.length; o++) {
+            const opt = item.options[o];
+            const isSelected = st.userValue === opt;
+            const isWrongTried = st.wrongChoices && st.wrongChoices.indexOf(opt) !== -1;
+            const isRightChoice = isLocked && opt === item.correct;
+            let btnCls = `choice-btn`;
+            if (isWrongTried) btnCls += ` is-wrong-choice`;
+            if (isRightChoice) btnCls += ` is-right-choice`;
+            const disableChoice = isLocked || isWrongTried;
+
+            optionsHtml += `
+              <button
+                type="button"
+                class="${btnCls}"
+                aria-pressed="${isSelected ? `true` : `false`}"
+                ${disableChoice ? `disabled` : ``}
+                onclick="selectChoiceOption('${sectionKey}', '${item.id}', ${o})"
+              >${escapeHtml(opt)}</button>
+            `;
+          }
+
+          controlsHtml = `
+            <div class="choice-group" role="group" aria-label="Answer options for sentence ${idx + 1}">
+              ${optionsHtml}
+            </div>
+            <div class="answer-controls">
+              <button
+                type="button"
+                id="btn-${item.id}"
+                class="button"
+                ${isLocked ? `disabled` : ``}
+                onclick="checkChoiceAnswer('${sectionKey}', '${item.id}')"
+              >${st.status === `hint` ? `Check 2nd Attempt` : `Check Selection`}</button>
+            </div>
+          `;
+        }
+
+        let feedbackHtml = `<div class="feedback-box" id="fb-${item.id}" aria-live="polite"></div>`;
+        if (st.status === `hint`) {
+          feedbackHtml = `
+            <div class="feedback-box is-visible is-hint" id="fb-${item.id}" aria-live="polite">
+              <span class="feedback-title">Not quite — 1st Attempt Hint</span>
+              ${escapeHtml(item.hint)} Try once more!
+            </div>
+          `;
+        } else if (st.status === `correct`) {
+          feedbackHtml = `
+            <div class="feedback-box is-visible is-correct" id="fb-${item.id}" aria-live="polite">
+              <span class="feedback-title">Correct!</span>
+              ${escapeHtml(item.explanation)}
+            </div>
+          `;
+        } else if (st.status === `revealed`) {
+          const acceptedText = sec.type === `choice` ? item.correct : item.answers[0];
+          feedbackHtml = `
+            <div class="feedback-box is-visible is-revealed" id="fb-${item.id}" aria-live="polite">
+              <span class="feedback-title">Correct answer: ${escapeHtml(acceptedText)}</span>
+              ${escapeHtml(item.explanation)}
+            </div>
+          `;
+        }
+
+        html += `
+          <article class="${cardClass}" id="card-${item.id}">
+            <div class="q-top-row">
+              <span class="q-num">Sentence ${numLabel} of 10</span>
+              <span class="${badgeClass}" id="badge-${item.id}">${badgeText}</span>
+            </div>
+            ${promptHtml}
+            ${controlsHtml}
+            ${feedbackHtml}
+          </article>
+        `;
+      }
+
+      container.innerHTML = html;
+    }
+
+    function showNotice(itemId, message) {
+      const fb = document.getElementById(`fb-${itemId}`);
+      if (!fb) return;
+      fb.className = `feedback-box is-visible is-notice`;
+      fb.innerHTML = `<span class="feedback-title">Action needed</span>${escapeHtml(message)}`;
+    }
+
+    function handleInputKeydown(event, sectionKey, itemId) {
+      if (event.key === `Enter`) {
+        event.preventDefault();
+        checkTextAnswer(sectionKey, itemId);
+      }
+    }
+
+    function checkTextAnswer(sectionKey, itemId) {
+      const item = findItem(sectionKey, itemId);
+      if (!item) return;
+      const st = getItemState(itemId);
+
+      // Guard against repeated clicks once finalized
+      if (st.status === `correct` || st.status === `revealed`) return;
+
+      const inputEl = document.getElementById(`input-${itemId}`);
+      if (!inputEl) return;
+      const rawVal = inputEl.value;
+      const normVal = normalizeAnswer(rawVal);
+
+      // Guard against empty submissions without penalizing
+      if (!normVal) {
+        showNotice(itemId, `Please type an answer before checking. Empty submissions do not cost an attempt.`);
+        inputEl.focus();
+        return;
+      }
+
+      // Guard against accidental double-click on the exact same wrong input on attempt 2
+      if (st.status === `hint` && normVal === st.lastWrongInput) {
+        showNotice(itemId, `That is the same answer you submitted before. Edit your response using the hint above before trying your second attempt.`);
+        inputEl.focus();
+        return;
+      }
+
+      st.userValue = rawVal.trim().replace(/\s+/g, ` `);
+      st.attempts += 1;
+
+      if (isMatch(rawVal, item.answers)) {
+        st.status = `correct`;
+      } else if (st.attempts === 1) {
+        st.status = `hint`;
+        st.lastWrongInput = normVal;
+      } else {
+        st.status = `revealed`;
+      }
+
+      renderExerciseSection(sectionKey);
+      updateMasteryUI();
+      saveProgress();
+
+      // Keep focus accessible after re-render
+      if (st.status === `hint`) {
+        const nextInput = document.getElementById(`input-${itemId}`);
+        if (nextInput) nextInput.focus();
+      }
+    }
+
+    function selectChoiceOption(sectionKey, itemId, optionIndex) {
+      const item = findItem(sectionKey, itemId);
+      if (!item) return;
+      const st = getItemState(itemId);
+      if (st.status === `correct` || st.status === `revealed`) return;
+
+      const chosen = item.options[optionIndex];
+      if (!chosen) return;
+      if (st.wrongChoices && st.wrongChoices.indexOf(chosen) !== -1) return;
+
+      st.userValue = chosen;
+      renderExerciseSection(sectionKey);
+    }
+
+    function checkChoiceAnswer(sectionKey, itemId) {
+      const item = findItem(sectionKey, itemId);
+      if (!item) return;
+      const st = getItemState(itemId);
+
+      if (st.status === `correct` || st.status === `revealed`) return;
+
+      if (!st.userValue) {
+        showNotice(itemId, `Please select one of the options above before checking.`);
+        return;
+      }
+
+      if (st.wrongChoices && st.wrongChoices.indexOf(st.userValue) !== -1) {
+        showNotice(itemId, `Please pick a different option using the hint above.`);
+        return;
+      }
+
+      st.attempts += 1;
+
+      if (st.userValue === item.correct) {
+        st.status = `correct`;
+      } else if (st.attempts === 1) {
+        st.status = `hint`;
+        if (!st.wrongChoices) st.wrongChoices = [];
+        st.wrongChoices.push(st.userValue);
+        st.userValue = ``;
+      } else {
+        st.status = `revealed`;
+        if (!st.wrongChoices) st.wrongChoices = [];
+        st.wrongChoices.push(st.userValue);
+      }
+
+      renderExerciseSection(sectionKey);
+      updateMasteryUI();
+      saveProgress();
+    }
+
+    function updateMasteryUI() {
+      const keys = [`ex1`, `ex2`, `ex3`, `ex4`];
+      let totalCorrect = 0;
+      let totalCompleted = 0;
+
+      for (let k = 0; k < keys.length; k++) {
+        const key = keys[k];
+        const sec = EXERCISES[key];
+        let secCorrect = 0;
+        for (let i = 0; i < sec.items.length; i++) {
+          const st = getItemState(sec.items[i].id);
+          if (st.status === `correct`) secCorrect += 1;
+          if (st.status === `correct` || st.status === `revealed`) totalCompleted += 1;
+        }
+        totalCorrect += secCorrect;
+        const scoreEl = document.getElementById(`score-` + key);
+        if (scoreEl) {
+          scoreEl.textContent = secCorrect + ` / ` + sec.items.length;
+        }
+      }
+
+      const masteryText = document.getElementById(`total-mastery-text`);
+      if (masteryText) masteryText.textContent = totalCorrect + ` / 40`;
+
+      const bar = document.getElementById(`total-progress-bar`);
+      if (bar) bar.setAttribute(`aria-valuenow`, String(totalCorrect));
+
+      const fill = document.getElementById(`total-progress-fill`);
+      if (fill) fill.style.width = ((totalCorrect / 40) * 100) + `%`;
+
+      const attemptedText = document.getElementById(`total-attempted-text`);
+      if (attemptedText) {
+        attemptedText.textContent = totalCompleted + ` of 40 completed`;
+      }
+    }
+
+    function resetSection(sectionKey, btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Click again to reset`;
+        setTimeout(function () {
+          if (btn && btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.textContent = `Reset Section`;
+          }
+        }, 4000);
+        return;
+      }
+
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reset Section`;
+      const sec = EXERCISES[sectionKey];
+      if (!sec) return;
+      for (let i = 0; i < sec.items.length; i++) {
+        delete appState.progress[sec.items[i].id];
+      }
+      renderExerciseSection(sectionKey);
+      updateMasteryUI();
+      saveProgress();
+    }
+
+    function resetAllProgress(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Confirm reset?`;
+        setTimeout(function () {
+          if (btn && btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.textContent = `Reset all`;
+          }
+        }, 4000);
+        return;
+      }
+
+      btn.dataset.armed = `false`;
+      btn.textContent = `Reset all`;
+      appState.progress = {};
+      renderAllSections();
+      updateMasteryUI();
+      saveProgress();
+    }
+
+    function renderAllSections() {
+      renderExerciseSection(`ex1`);
+      renderExerciseSection(`ex2`);
+      renderExerciseSection(`ex3`);
+      renderExerciseSection(`ex4`);
+    }
+
+    /* ================================================================
+       6. INITIALIZATION & NOTEBOOK SHIM PERSISTENCE
+       ================================================================ */
+    async function initApp() {
+      renderLabStage();
+      selectReportCase(`present`, document.querySelector(`#sec-reporting .tab-btn`));
+
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && saved.progress && typeof saved.progress === `object`) {
+            appState.progress = saved.progress;
+          }
+        }
+      } catch (err) {
+        // Proceed cleanly with default empty state
+      }
+
+      renderAllSections();
+      updateMasteryUI();
+
+      try {
+        if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+          window.notebookAppApi.notifyAppReady();
+        }
+      } catch (err) {
+        // Ignore if running outside host
+      }
+    }
+
+    initApp();
+  </script>
+</body>
+</html>
